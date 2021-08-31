@@ -1,0 +1,6 @@
+name: ecoregions
+recipe: pantheon
+config:
+  framework: wordpress
+  site: ecoregions
+  id: 9823d6fc-0507-4c0b-8eac-18802a4813a0
