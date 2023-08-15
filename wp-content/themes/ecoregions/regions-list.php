@@ -10,7 +10,12 @@ $regions = get_terms('region', array(
     'hide_empty' => false
 ));
 
-get_header();
+// if not via htmx, load header
+if (!isset($_SERVER['HTTP_HX_REQUEST'])):
+    get_header();
+
+endif;
+
 ?>
 
 <header class="page-header">
@@ -21,11 +26,25 @@ get_header();
 <?php if ($regions && !is_wp_error($regions)) : ?>
     <ul class="region-list">
         <?php foreach ($regions as $region) : ?>
-            <li><a href="<?php echo get_term_link($region); ?>"><?php echo $region->name; ?></a></li>
+            <li><a
+            hx-get = "<?php echo get_term_link($region); ?>"
+            hx-target = "#response"
+            hx-push-url = "true"
+            href="<?php echo get_term_link($region); ?>"><?php echo $region->name; ?></a></li>
         <?php endforeach; ?>
     </ul>
+
+    <div id="response">
+
+    </div>
+
+
 <?php else : ?>
     <p>No regions found.</p>
 <?php endif; ?>
 
+<?php if (!isset($_SERVER['HTTP_HX_REQUEST'])): ?>
+
 <?php get_footer(); ?>
+
+<?php endif; ?>

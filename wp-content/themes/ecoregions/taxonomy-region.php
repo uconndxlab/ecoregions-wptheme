@@ -3,7 +3,6 @@
 Template Name: Regions Template
 */
 
-get_header();
 
 // Query all pods of type "location"
 $args = array(
@@ -18,6 +17,14 @@ $args = array(
 );
 
 $explorations_query = new WP_Query($args);
+
+
+if (!isset($_SERVER['HTTP_HX_REQUEST'])):
+
+    get_header();
+
+endif;
+
 
 ?>
 
@@ -39,7 +46,11 @@ $explorations_query = new WP_Query($args);
         <?php if ($locations_query->have_posts()) : ?>
             <ul class="location-list">
                 <?php while ($locations_query->have_posts()) : $locations_query->the_post(); ?>
-                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+                    <li><a
+                    hx-get = "<?php the_permalink(); ?>"
+                    hx-target = "#main"
+                    hx-push-url = "true"
+                    href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
             </ul>
         <?php else : ?>
@@ -51,7 +62,12 @@ $explorations_query = new WP_Query($args);
         <?php if ($explorations_query->have_posts()) : ?>
             <ul class="exploration-list">
                 <?php while ($explorations_query->have_posts()) : $explorations_query->the_post(); ?>
-                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+                    <li><a
+                    hx-get = "<?php the_permalink(); ?>"
+                    hx-target = "#main"
+                    hx-push-url = "true"
+                    
+                    href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
             </ul>
         <?php else : ?>
@@ -60,4 +76,8 @@ $explorations_query = new WP_Query($args);
     </main>
 </div>
 
+<?php if (!isset($_SERVER['HTTP_HX_REQUEST'])): ?>
+
 <?php get_footer(); ?>
+
+<?php endif; ?>
