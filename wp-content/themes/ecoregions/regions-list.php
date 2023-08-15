@@ -14,6 +14,13 @@ $regions = get_terms('region', array(
 if (!isset($_SERVER['HTTP_HX_REQUEST'])):
     get_header();
 
+    ?>
+
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
+
+<?php
+
 endif;
 
 ?>
@@ -41,6 +48,9 @@ endif;
 <?php endif; ?>
 
 <?php if (!isset($_SERVER['HTTP_HX_REQUEST'])): ?>
+
+    </main><!-- #main -->
+</div><!-- #primary -->
 
 <?php get_footer(); ?>
 
