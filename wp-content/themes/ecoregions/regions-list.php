@@ -28,15 +28,12 @@ endif;
         <?php foreach ($regions as $region) : ?>
             <li><a
             hx-get = "<?php echo get_term_link($region); ?>"
-            hx-target = "#response"
+            hx-target = "#main"
             hx-push-url = "true"
             href="<?php echo get_term_link($region); ?>"><?php echo $region->name; ?></a></li>
         <?php endforeach; ?>
     </ul>
 
-    <div id="response">
-
-    </div>
 
 
 <?php else : ?>
