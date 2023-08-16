@@ -9,7 +9,6 @@ get_header();
         <?php if ( have_posts() ) :
             while ( have_posts() ) :
                 the_post();
-            // TEMPLATE CONTENT HERE
         ?>
             <div class="location-info">
                 <h1><?php the_title(); ?></h1>
@@ -39,4 +38,5 @@ get_header();
     </main>
 
 <?php
-get_footer(); ?>
+if (!isHTMX())
+    get_footer(); ?>

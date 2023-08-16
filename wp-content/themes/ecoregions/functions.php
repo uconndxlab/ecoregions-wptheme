@@ -47,3 +47,7 @@ function ecoregions_run_hooks() {
 }
 
 ecoregions_run_hooks();
+
+function isHTMX() {
+    return isset($_SERVER['HTTP_HX_REQUEST']);
+}

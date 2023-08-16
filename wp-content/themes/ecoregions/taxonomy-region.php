@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Regions Template
+Template Name: Regions Taxonomy Template (Really only for use on a Region taxonomy listing)
 */
 
 
@@ -42,13 +42,13 @@ endif;
             </h1>
         </header>
 
-        <h2> Locations in this region </h2>
+        <h2 class="text-white"> Locations in this region </h2>
         <?php if ($locations_query->have_posts()) : ?>
             <ul class="location-list">
                 <?php while ($locations_query->have_posts()) : $locations_query->the_post(); ?>
                     <li><a
                     hx-get = "<?php the_permalink(); ?>"
-                    hx-target = "#main"
+                    hx-target = "#results"
                     hx-push-url = "true"
                     href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
@@ -58,13 +58,13 @@ endif;
         <?php endif; ?>
         <?php wp_reset_postdata(); ?>
 
-        <h2> All Explorations in this region </h2>
+        <h2 class="text-white"> All Explorations in this region </h2>
         <?php if ($explorations_query->have_posts()) : ?>
             <ul class="exploration-list">
                 <?php while ($explorations_query->have_posts()) : $explorations_query->the_post(); ?>
                     <li><a
                     hx-get = "<?php the_permalink(); ?>"
-                    hx-target = "#main"
+                    hx-target = "#results"
                     hx-push-url = "true"
                     
                     href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>

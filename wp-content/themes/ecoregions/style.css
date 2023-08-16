@@ -1,12 +1,43 @@
 /*
 Theme Name: EcoRegions
-Author: Digital Experience Lab - UConn
-Author URI: https://dx.uconn.edu/
+Author: Digital Experience Group - UConn
+Author URI: https://dxgroup.core.uconn.edu/
 Description: A theme build for the Connecticut EcoRegions project.
 Version: 1.0
 Text Domain: ecoregions
 */
 
 body {
+    background-color: #e9ffe9;
+}
+
+
+.pane-50 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    overflow: auto;
+    z-index: 1000;
+    padding:14px;
+}
+
+.logged-in .pane-50 {
+    top: 32px;
+}
+
+.pane-50-left {
+    left: 0;
+}
+
+.pane-50-right {
+    right: 0;
+}
+
+.bg-dark {
+    background-color: #e9ffe9;
+}
+
+.bg-light {
     background-color: #e9ffe9;
 }
