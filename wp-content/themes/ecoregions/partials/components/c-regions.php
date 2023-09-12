@@ -18,7 +18,7 @@ if (!$isEmpty): ?>
             hx-get="<?php echo $regions->display('permalink'); ?>"
             hx-target="#leftPane"
             hx-push-url = "true"
-            hx-swap="#leftPane"
+            hx-select  = "#leftPane"
             href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a>
             
 

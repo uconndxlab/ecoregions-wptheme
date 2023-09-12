@@ -10,16 +10,16 @@ if (!empty($region_params)) {
     $region_id = $region_params['region_id'];
     $region_slug = $region_params['region_slug'];
 } else {
-    $region_name = 'No region selected';
-    $region_overview = 'No region selected';
-    $region_flavor_text = 'No region selected';
-    $region_id = 'No region selected';
+    $region_name = '{region_name}';
+    $region_overview = '{region_overview}';
+    $region_flavor_text = '{region_flavor_text}';
+    $region_id = '{region_id}';
     $region_slug =  null;
 }
 
 ?>
 
-<div id="leftPane" class="col-md-6 pane-50 pane-50-left bg-dark text-white">
+<div id="leftPane" class="col-md-12 pane-50 pane-50-left bg-dark text-white">
 
     <h2>
         <?php

@@ -17,7 +17,7 @@ get_header();
 
         <?php get_template_part('partials/layout/left-pane'); ?>
         
-        <div class="col-md-6 pane-50 pane-50-right bg-light">
+        <div class="col-md-12 pane-50 pane-50-right bg-light">
 
             <div class="region-map">
                 <h3 class="text-dark">All Regions</h3>
@@ -26,8 +26,7 @@ get_header();
                 <?php get_template_part('partials/components/c-regions'); ?>
             </div>
 
-            <div id="experienceDetail"></div>
-            <div class="single-location"></div>
+            <div class="experience-detail"></div>
 
         </div>
     </div>

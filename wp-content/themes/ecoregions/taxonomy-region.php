@@ -27,6 +27,7 @@ $region_params = array(
 
 // Check if this is an HTMX request using your custom function
 if (isHTMX()) { ?>
+<h1>It is HTMX </h1>
     <div class="region-info">
         <h2><?php echo esc_html($region_name); ?></h2>
         <p><?php echo esc_html($region_overview); ?></p>
@@ -51,6 +52,7 @@ if (isHTMX()) { ?>
 ?>
 
     <div class="container-fluid">
+        <h2>It is not HTMX</h2>
         <div class="row">
 
             <?php
@@ -64,7 +66,7 @@ if (isHTMX()) { ?>
             );
             ?>
 
-            <div class="col-md-6 pane-50 pane-50-right bg-light">
+            <div class="col-md-12 pane-50 pane-50-right bg-light">
                 <div class="region-map">
                     <h3 class="text-dark">All Regions</h3>
 
