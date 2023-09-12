@@ -34,10 +34,16 @@ body {
     right: 0;
 }
 
-.bg-dark {
-    background-color: #e9ffe9;
-}
+
 
 .bg-light {
     background-color: #e9ffe9;
+}
+
+#results {
+    height:100vh;
+}
+
+.pane-50-right:has(.single-experience-wrap) .region-map {
+    display: none;
 }

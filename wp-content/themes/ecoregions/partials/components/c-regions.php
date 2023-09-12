@@ -16,9 +16,13 @@ if (!$isEmpty): ?>
         <?php while ($regions->fetch()): ?>
             <li><a 
             hx-get="<?php echo $regions->display('permalink'); ?>"
-            hx-target="#results"
+            hx-target="#leftPane"
             hx-push-url = "true"
-            href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
+            hx-swap="#leftPane"
+            href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a>
+            
+
+        </li>
         <?php endwhile; ?>
     </ul>
 <?php else: ?>

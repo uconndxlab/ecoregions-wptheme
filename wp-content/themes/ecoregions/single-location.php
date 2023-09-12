@@ -13,6 +13,10 @@ get_header();
             <div class="location-info">
                 <h1><?php the_title(); ?></h1>
                 <p><?php echo get_post_meta( $post->ID, 'flavor_text', true); ?></p>
+                <!-- get the overview -->
+                <div class="overview">
+                    <?php echo get_post_meta( $post->ID, 'overview', true); ?>
+                </div>
             </div>
 
             <div class="conversations">

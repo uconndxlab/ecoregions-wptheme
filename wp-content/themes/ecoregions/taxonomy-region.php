@@ -1,83 +1,87 @@
 <?php
-/*
-Template Name: Regions Taxonomy Template (Really only for use on a Region taxonomy listing)
-*/
 
+/** taxonomy-region.php
+ *
+ * The template for displaying the region taxonomy
+ */
 
-// Query all pods of type "location"
-$args = array(
-    'post_type' => 'location', // Replace with your custom pods post type
-    'posts_per_page' => -1,
+// Get the region taxonomy
+$region = get_queried_object();
+
+// get the pods field 'overview'
+$region_pod = pods('region', $region->term_id);
+$region_name = $region->name;
+$region_overview = $region_pod->field('overview');
+$region_flavor_text = $region_pod->field('flavor_text');
+$region_slug = $region->slug;
+
+$region_params = array(
+    'region_name' => $region->name,
+    'region_overview' => $region_overview,
+    'region_flavor_text' => $region_flavor_text,
+    'region_id' => $region->term_id,
+    'region_slug' => $region_slug
 );
-$locations_query = new WP_Query($args);
-
-$args = array(
-    'post_type' => 'exploration', // Replace with your custom pods post type
-    'posts_per_page' => -1,
-);
-
-$explorations_query = new WP_Query($args);
 
 
-if (!isset($_SERVER['HTTP_HX_REQUEST'])):
 
-    get_header();
+// Check if this is an HTMX request using your custom function
+if (isHTMX()) { ?>
+    <div class="region-info">
+        <h2><?php echo esc_html($region_name); ?></h2>
+        <p><?php echo esc_html($region_overview); ?></p>
+        <p><?php echo esc_html($region_flavor_text); ?></p>
+        <div class="region-experiences">
+            <?php
 
-endif;
-
-
+            get_template_part(
+                'partials/layout/left-pane',
+                null,
+                array(
+                    'region_params' => $region_params,
+                )
+            );
+            ?>
+        </div>
+    </div>
+<?php
+} else {
+    // This is a browser request, render the full layout
+    get_header(); // Include your header template
 ?>
 
-<div id="primary" class="content-area">
-    <main id="main" class="site-main">
-        <header class="page-header">
-            <h1 class="page-title">
-                <?php 
-                    // get the name of the current taxonomy
-                    $term = get_queried_object();
-                    echo $term->name;
+    <div class="container-fluid">
+        <div class="row">
 
+            <?php
 
-                ?>
-            </h1>
-        </header>
+            get_template_part(
+                'partials/layout/left-pane',
+                null,
+                array(
+                    'region_params' => $region_params,
+                )
+            );
+            ?>
 
-        <h2 class="text-white"> Locations in this region </h2>
-        <?php if ($locations_query->have_posts()) : ?>
-            <ul class="location-list">
-                <?php while ($locations_query->have_posts()) : $locations_query->the_post(); ?>
-                    <li><a
-                    hx-get = "<?php the_permalink(); ?>"
-                    hx-target = "#results"
-                    hx-push-url = "true"
-                    href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else : ?>
-            <p>No locations found.</p>
-        <?php endif; ?>
-        <?php wp_reset_postdata(); ?>
+            <div class="col-md-6 pane-50 pane-50-right bg-light">
+                <div class="region-map">
+                    <h3 class="text-dark">All Regions</h3>
 
-        <h2 class="text-white"> All Explorations in this region </h2>
-        <?php if ($explorations_query->have_posts()) : ?>
-            <ul class="exploration-list">
-                <?php while ($explorations_query->have_posts()) : $explorations_query->the_post(); ?>
-                    <li><a
-                    hx-get = "<?php the_permalink(); ?>"
-                    hx-target = "#results"
-                    hx-push-url = "true"
-                    
-                    href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else : ?>
-            <p>No explorations found.</p>
-        <?php endif; ?>
-    </main>
-</div>
+                    <p>Replace this with a map. If there's content below, it's a specific experience being shown. Should overlay the map.</p>
+                    <?php get_template_part('partials/components/c-regions'); ?>
 
-<?php if (!isset($_SERVER['HTTP_HX_REQUEST'])): ?>
+                </div>
 
-<?php get_footer(); ?>
+                <div class="experience-detail">
 
-<?php endif; ?>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+<?php
+    get_footer(); // Include your footer template
+}

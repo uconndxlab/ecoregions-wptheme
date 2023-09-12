@@ -7,7 +7,7 @@ if ( !empty($explorations) ) : ?>
 
     <?php
         foreach( $explorations as $expl ) {
-            get_template_part('partials/components/c', 'explorations', array(
+            get_template_part('partials/components/c', 'experiences', array(
                 'exploration' => $expl
             ));
         }
