@@ -4,31 +4,50 @@ $experience_pod = pods('experience', $post->ID);
 $description = $experience_pod->field('description');
 $attachments = $experience_pod->field('attachments');
 
-if(!isHTMX()) {
+if (!isHTMX()) {
     get_header();
 }
 ?>
+<div class="single-experience-wrap">
 
-        <div class="single-experience-wrap">
+    <h1><?php the_title(); ?></h1>
 
-            <h1><?php the_title(); ?></h1>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="text-tab" data-bs-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="true">Description</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="attachments-tab" data-bs-toggle="tab" href="#attachments" role="tab" aria-controls="attachments" aria-selected="false">Attachments</a>
+        </li>
+    </ul>
 
-            <!-- get the content -->
-            <?php the_excerpt(); ?>
-
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
             <!-- get the description -->
-            <div class="experience-description">
-                <h2>Description</h2>
-                <?php echo $description; ?>
+            <div class="experience-description mt-2">
+                <?php if ($description): ?>
+                    <h2>Description</h2>
+                    <?php echo $description; ?>
+                <?php else: ?>
+                    <div class="alert alert-warning">
+                        No description found.
+                    </div>
+                <?php endif; ?>
             </div>
 
-            <div class="experience-attachments">
+        </div>
+        <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab">
 
-                <h2>Attachments</h2>
+            <!-- Attachments content -->
+            <div class="experience-attachments mt-2">
 
-                <!-- get the attachments -->
                 <?php
-                if (!empty($attachments)) {
+                if (!empty($attachments)) { ?>
+                    <h2>Attachments</h2>
+
+                    <?php
                     foreach ($attachments as $attachment) {
                         $attachment_url = $attachment['guid'];
                         $attachment_title = $attachment['post_title'];
@@ -38,25 +57,34 @@ if(!isHTMX()) {
                         $attachment_extension = pathinfo($attachment_filename, PATHINFO_EXTENSION);
                         $attachment_icon = get_template_directory_uri() . '/assets/images/icons/' . $attachment_extension . '.png';
                         //$attachment_icon = file_exists($attachment_icon) ? $attachment_icon : get_template_directory_uri() . '/assets/images/icons/unknown.png';
-
-                ?>
-
+                    ?>
                         <div class="attachment">
                             <a href="<?php echo $attachment_url; ?>" target="_blank">
                                 <img src="<?php echo $attachment_icon; ?>" alt="<?php echo $attachment_type; ?>">
                                 <span><?php echo $attachment_title; ?></span>
                             </a>
                         </div>
-
-                <?php
+                    <?php
                     }
+                } else {
+                    // no attachments, show a bootstrap alert
+                    ?>
+
+                    <div class="alert alert-warning">
+                        No attachments found.
+                    </div>
+                <?php
                 }
                 ?>
             </div>
         </div>
+    </div>
+
+</div>
+
 
 <?php
 
-if(!isHTMX()) {
+if (!isHTMX()) {
     get_footer();
 }

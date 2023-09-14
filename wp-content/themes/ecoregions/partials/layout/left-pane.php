@@ -10,10 +10,10 @@ if (!empty($region_params)) {
     $region_id = $region_params['region_id'];
     $region_slug = $region_params['region_slug'];
 } else {
-    $region_name = '{region_name}';
-    $region_overview = '{region_overview}';
-    $region_flavor_text = '{region_flavor_text}';
-    $region_id = '{region_id}';
+    $region_name = '';
+    $region_overview = '';
+    $region_flavor_text = '';
+    $region_id = '';
     $region_slug =  null;
 }
 
