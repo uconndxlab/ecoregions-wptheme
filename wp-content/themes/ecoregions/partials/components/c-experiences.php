@@ -18,6 +18,12 @@ $experiences = get_posts(array(
 
 <?php
 
+if (!empty($experiences)) {
+    echo '<h3>Experiences</h3>';
+} else {
+  
+}
+
 // Loop through the experiences
 foreach ($experiences as $experience) {
 
@@ -27,6 +33,7 @@ foreach ($experiences as $experience) {
 
         hx-target = ".experience-detail"
         hx-get = "<?php echo get_permalink($experience->ID); ?>"  
+        hx-push-url="true"
         hx-select = ".single-experience-wrap"
         href="<?php echo get_permalink($experience->ID); ?>">
             <?php echo get_the_title($experience->ID); ?>

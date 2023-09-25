@@ -27,7 +27,6 @@ $region_params = array(
 
 // Check if this is an HTMX request using your custom function
 if (isHTMX()) { ?>
-<h1>It is HTMX </h1>
     <div class="region-info">
         <h2><?php echo esc_html($region_name); ?></h2>
         <p><?php echo esc_html($region_overview); ?></p>
@@ -52,7 +51,6 @@ if (isHTMX()) { ?>
 ?>
 
     <div class="container-fluid">
-        <h2>It is not HTMX</h2>
         <div class="row">
 
             <?php
@@ -67,13 +65,22 @@ if (isHTMX()) { ?>
             ?>
 
             <div class="col-md-12 pane-50 pane-50-right bg-light">
-                <div class="region-map">
-                    <h3 class="text-dark">All Regions</h3>
 
-                    <p>Replace this with a map. If there's content below, it's a specific experience being shown. Should overlay the map.</p>
+                <div class="region-map">
+                    <div class="region-map">
                     <?php get_template_part('partials/components/c-regions'); ?>
+                    <h3><?php echo esc_html($region_name); ?></h3>
+
+
+                        <!-- include a google map usa here -->
+                        <div class="map-wrap">
+                            <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Hartford,%20CT+(Hartford,%20CT)&amp;t=&amp;z=8&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population calculator map</a></iframe></div>
+                        </div>
+                    </div>
 
                 </div>
+
+
 
                 <div class="experience-detail">
 

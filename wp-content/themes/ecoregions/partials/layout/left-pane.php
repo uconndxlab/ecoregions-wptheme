@@ -26,7 +26,8 @@ if (!empty($region_params)) {
         <div class="video-wrap">
             <iframe width="500" height="281" src="https://www.youtube.com/embed/wllTzw7O-z0" title="CSMNH - Introduction to the Ecoregions of Connecticut" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <p class="text-white">From one corner to another …… observant passengers traveling in a vehicle following a diagonal route from the town of Stonington, along the southeastern coast of the state, to the town of Salisbury, in the northwestern corner, would notice a myriad of changes as they traverse the landscape. From standing on the shore and gazing out over Long Island Sound, our travelers would leave the ocean-scented air of the coast, and rise in elevation from less than 100 feet to over 1,500 feet. They would drive through rural, suburban and urban communities. And, although they would travel through many acres of forest, the presence of numerous stone walls would serve as a reminder of a not-so-distant past when trees did not dominant the land.</p>
+        <h3 class="my-3"> Project Overview</h3>
+        <p class="text-white my-3">From one corner to another …… observant passengers traveling in a vehicle following a diagonal route from the town of Stonington, along the southeastern coast of the state, to the town of Salisbury, in the northwestern corner, would notice a myriad of changes as they traverse the landscape. From standing on the shore and gazing out over Long Island Sound, our travelers would leave the ocean-scented air of the coast, and rise in elevation from less than 100 feet to over 1,500 feet. They would drive through rural, suburban and urban communities. And, although they would travel through many acres of forest, the presence of numerous stone walls would serve as a reminder of a not-so-distant past when trees did not dominant the land.</p>
 
     <?php endif; ?>
 
@@ -44,7 +45,7 @@ if (!empty($region_params)) {
         ?>
     </h3>
 
-    <p>
+    <p class="my-3">
         <?php
         echo $region_overview;
         ?>
@@ -52,7 +53,6 @@ if (!empty($region_params)) {
 
 
 
-    <h3 class="text-white">Experiences</h3>
     <!-- get the experiences c-experiences -->
     <?php
     get_template_part('partials/components/c', 'experiences', array(

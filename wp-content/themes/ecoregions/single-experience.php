@@ -3,14 +3,22 @@
 $experience_pod = pods('experience', $post->ID);
 $description = $experience_pod->field('description');
 $attachments = $experience_pod->field('attachments');
+// region is a taxonomy. get the region for the current experience
+$current_region = get_the_terms($post->ID, 'region')[0]->name;
 
 if (!isHTMX()) {
     get_header();
 }
 ?>
 <div class="single-experience-wrap">
+    <!--  link back to the region -->
+    <a href="<?php echo get_term_link($current_region, 'region'); ?>" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to <?php echo $current_region; ?>
+    </a>
 
     <h1><?php the_title(); ?></h1>
+
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">

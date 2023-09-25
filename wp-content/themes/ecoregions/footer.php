@@ -3,10 +3,7 @@
             </footer>
 
             </div><!-- Page -->
-            <script>
-                htmx.logAll();
-              
-            </script>
+
             <?php wp_footer(); ?>
 
 

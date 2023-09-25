@@ -20,13 +20,10 @@ get_header();
         <div class="col-md-12 pane-50 pane-50-right bg-light">
 
             <div class="region-map">
-                <!-- include a google map usa here -->
+                <?php get_template_part('partials/components/c-regions'); ?>                <!-- include a google map usa here -->
                 <div class="map-wrap">
                     <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Hartford,%20CT+(Hartford,%20CT)&amp;t=&amp;z=8&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population calculator map</a></iframe></div>
                 </div>
-
-
-                <?php get_template_part('partials/components/c-regions'); ?>
             </div>
 
             <div class="experience-detail"></div>
