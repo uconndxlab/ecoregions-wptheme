@@ -13,8 +13,11 @@ if (!isHTMX()) {
 ?>
 <div class="single-experience-wrap">
     <!--  link back to the region -->
-    <a href="<?php echo get_term_link($current_region, 'region'); ?>" class="back-link">
-        <i class="fas fa-arrow-left"></i>
+    <a href="<?php echo get_term_link($current_region, 'region'); ?>" class="back-link
+    btn btn-primary btn-icon
+    ">
+        <!-- bootstrap icon for back arrow -->
+        <i class="bi bi-arrow-left"></i>
         Back to <?php echo $current_region; ?> Map
     </a>
 

@@ -29,18 +29,19 @@ foreach ($experiences as $experience) {
 ?>
     <div class="single-experience">
         <ul class="list-group">
-            <li class="list-group-item">
+            
                 
             <a 
-
+            class="list-group-item list-group-item-action"
             hx-target = ".experience-detail"
             hx-get = "<?php echo get_permalink($experience->ID); ?>"  
             hx-push-url="true"
             hx-select = ".single-experience-wrap"
             href="<?php echo get_permalink($experience->ID); ?>">
                 <?php echo get_the_title($experience->ID); ?>
+                <p> <?php echo get_the_excerpt($experience->ID); ?></p>
             </a>
-            </li>
+            
         </ul>
     </div>
 

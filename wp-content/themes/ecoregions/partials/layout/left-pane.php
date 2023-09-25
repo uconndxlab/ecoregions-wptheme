@@ -35,7 +35,7 @@ if (!empty($region_params)) {
 
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs" id="regionTabs" role="tablist">
+<ul class="nav nav-tabs d-flex justify-content-around" id="regionTabs" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
     </li>
