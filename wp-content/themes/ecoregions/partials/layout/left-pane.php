@@ -21,6 +21,17 @@ if (!empty($region_params)) {
 
 <div id="leftPane" class="col-md-12 pane-50 pane-50-left bg-dark text-white">
 
+    <?php if ($region_id == '') : ?>
+        <h2 class="text-white">An Introduction to Ecological Regions and Geological Features of Connecticut</h2>
+        <div class="video-wrap">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/wllTzw7O-z0" title="CSMNH - Introduction to the Ecoregions of Connecticut" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="text-white">From one corner to another …… observant passengers traveling in a vehicle following a diagonal route from the town of Stonington, along the southeastern coast of the state, to the town of Salisbury, in the northwestern corner, would notice a myriad of changes as they traverse the landscape. From standing on the shore and gazing out over Long Island Sound, our travelers would leave the ocean-scented air of the coast, and rise in elevation from less than 100 feet to over 1,500 feet. They would drive through rural, suburban and urban communities. And, although they would travel through many acres of forest, the presence of numerous stone walls would serve as a reminder of a not-so-distant past when trees did not dominant the land.</p>
+
+    <?php endif; ?>
+
+
+
     <h2>
         <?php
         echo $region_name;
@@ -39,7 +50,6 @@ if (!empty($region_params)) {
         ?>
     </p>
 
-    <p class="text-white">When you select an ecoregion, you'll see some descriptive info about that ecoregion here.</p>
 
 
     <h3 class="text-white">Experiences</h3>
