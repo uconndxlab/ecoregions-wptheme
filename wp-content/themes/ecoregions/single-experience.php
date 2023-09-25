@@ -6,6 +6,7 @@ $attachments = $experience_pod->field('attachments');
 // region is a taxonomy. get the region for the current experience
 $current_region = get_the_terms($post->ID, 'region')[0]->name;
 
+
 if (!isHTMX()) {
     get_header();
 }
@@ -14,7 +15,7 @@ if (!isHTMX()) {
     <!--  link back to the region -->
     <a href="<?php echo get_term_link($current_region, 'region'); ?>" class="back-link">
         <i class="fas fa-arrow-left"></i>
-        Back to <?php echo $current_region; ?>
+        Back to <?php echo $current_region; ?> Map
     </a>
 
     <h1><?php the_title(); ?></h1>

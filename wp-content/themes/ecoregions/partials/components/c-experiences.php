@@ -19,7 +19,6 @@ $experiences = get_posts(array(
 <?php
 
 if (!empty($experiences)) {
-    echo '<h3>Experiences</h3>';
 } else {
   
 }
@@ -29,15 +28,20 @@ foreach ($experiences as $experience) {
 
 ?>
     <div class="single-experience">
-        <a 
+        <ul class="list-group">
+            <li class="list-group-item">
+                
+            <a 
 
-        hx-target = ".experience-detail"
-        hx-get = "<?php echo get_permalink($experience->ID); ?>"  
-        hx-push-url="true"
-        hx-select = ".single-experience-wrap"
-        href="<?php echo get_permalink($experience->ID); ?>">
-            <?php echo get_the_title($experience->ID); ?>
-        </a>
+            hx-target = ".experience-detail"
+            hx-get = "<?php echo get_permalink($experience->ID); ?>"  
+            hx-push-url="true"
+            hx-select = ".single-experience-wrap"
+            href="<?php echo get_permalink($experience->ID); ?>">
+                <?php echo get_the_title($experience->ID); ?>
+            </a>
+            </li>
+        </ul>
     </div>
 
 <?php

@@ -31,34 +31,41 @@ if (!empty($region_params)) {
 
     <?php endif; ?>
 
+<h2><?php echo $region_name; ?></h2>
 
 
-    <h2>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="regionTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Experiences</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content" id="regionTabContent">
+    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <h3><?php echo $region_flavor_text; ?></h3>
+        <p class="my-3"><?php echo $region_overview; ?></p>
+    </div>
+    <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
         <?php
-        echo $region_name;
+        // Include your experiences content here, or use your existing code to get experiences
+        get_template_part('partials/components/c', 'experiences', array(
+            'region' => $region_slug,
+        ));
         ?>
-    </h2>
+    </div>
+</div>
 
-    <h3>
-        <?php
-        echo $region_flavor_text;
-        ?>
-    </h3>
+<script>
+    // Initialize the Bootstrap tabs
+    var regionTabs = new bootstrap.Tab(document.getElementById('overview-tab'));
+    regionTabs.show();
+</script>
 
-    <p class="my-3">
-        <?php
-        echo $region_overview;
-        ?>
-    </p>
-
-
-
-    <!-- get the experiences c-experiences -->
-    <?php
-    get_template_part('partials/components/c', 'experiences', array(
-        'region' => $region_slug,
-    ));
-    ?>
 
 
 
