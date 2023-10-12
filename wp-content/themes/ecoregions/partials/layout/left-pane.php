@@ -62,8 +62,8 @@ if (!empty($region_params)) {
 
 <script>
     // Initialize the Bootstrap tabs
-    var regionTabs = new bootstrap.Tab(document.getElementById('overview-tab'));
-    regionTabs.show();
+    //var regionTabs = new bootstrap.Tab(document.getElementById('overview-tab'));
+    //regionTabs.show();
 </script>
 
 
