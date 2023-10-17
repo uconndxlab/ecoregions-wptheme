@@ -1,5 +1,11 @@
-            <footer>
-                <p>Footer here.</p>
+            <footer class="bg-dark text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 py-4">
+                            <p>Footer here.</p>
+                        </div>
+                    </div>
+                </div>
             </footer>
 
             </div><!-- Page -->

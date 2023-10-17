@@ -19,32 +19,75 @@ $experiences = get_posts(array(
 <?php
 
 if (!empty($experiences)) {
-} else {
-  
-}
+    // Loop through the experiences
+    foreach ($experiences as $experience) {
+        $habitats = get_the_terms($experience->ID, 'habitat');
+        $habitat_names = array();
+        if (!empty($habitats)) {
+            foreach ($habitats as $habitat) {
+                $habitat_names[] = $habitat->name;
+            }
+        }
 
-// Loop through the experiences
-foreach ($experiences as $experience) {
+        $experience_types = get_the_terms($experience->ID, 'experience_type');
+        $experience_type_names = array();
+        if (!empty($experience_types)) {
+            foreach ($experience_types as $experience_type) {
+                $experience_type_names[] = $experience_type->name;
+            }
+        }
+
 
 ?>
-    <div class="single-experience">
-        <ul class="list-group">
-            
-                
-            <a 
-            class="list-group-item list-group-item-action"
-            hx-target = ".experience-detail"
-            hx-get = "<?php echo get_permalink($experience->ID); ?>"  
-            hx-push-url="true"
-            hx-select = ".single-experience-wrap"
-            href="<?php echo get_permalink($experience->ID); ?>">
-                <?php echo get_the_title($experience->ID); ?>
-                <p> <?php echo get_the_excerpt($experience->ID); ?></p>
-            </a>
-            
-        </ul>
+        <div>
+            <ul class="list-group">
+
+
+                <li class="list-group-item my-2 bg-green-lighter">
+                    <a class="list-group-item-action" hx-target=".single-experience-target" 
+                    hx-get="<?php echo get_permalink($experience->ID); ?>" 
+                    hx-push-url="false" 
+                    hx-select=".single-experience-wrap" 
+                    
+                    href="<?php echo get_permalink($experience->ID); ?>">
+                        <h4><?php echo get_the_title($experience->ID); ?></h4>
+                        <p> <?php echo get_the_excerpt($experience->ID); ?></p>
+
+
+
+                    </a>
+                    <?php // do the badges for habitats and experience types
+                        if (!empty($habitat_names)) {
+                            foreach ($habitat_names as $habitat_name) {
+                        ?>
+                                <span class="badge bg-green"><?php echo $habitat_name; ?></span>
+                            <?php
+                            }
+                        }
+
+                        if (!empty($experience_type_names)) {
+                            foreach ($experience_type_names as $experience_type_name) {
+                            ?>
+                                <span class="badge bg-secondary"><?php echo $experience_type_name; ?></span>
+                        <?php
+
+                            }
+                        }
+                        ?>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+
+    <?php
+    }
+} else {  ?>
+
+    <div class="alert alert-warning">
+        There are no experiences available for this region.
     </div>
 
-<?php
-}
-?>
+<?php }

@@ -13,12 +13,12 @@ if (!isHTMX()) {
 ?>
 <div class="single-experience-wrap">
     <!--  link back to the region -->
-    <a href="<?php echo get_term_link($current_region, 'region'); ?>" class="back-link
-    btn btn-primary btn-icon
+    <a id="backToRegion" href="javascript:void(0);" class="back-link
+    btn bg-green-dark btn-icon text-white
     ">
         <!-- bootstrap icon for back arrow -->
-        <i class="bi bi-arrow-left"></i>
-        Back to <?php echo $current_region; ?> Map
+        <i class="bi bi-x"></i>
+        close
     </a>
 
     <h1><?php the_title(); ?></h1>
@@ -67,11 +67,11 @@ if (!isHTMX()) {
                         $attachment_type = $attachment['post_mime_type'];
                         $attachment_filename = basename($attachment_url);
                         $attachment_extension = pathinfo($attachment_filename, PATHINFO_EXTENSION);
-                        $attachment_icon = get_template_directory_uri() . '/assets/images/icons/' . $attachment_extension . '.png';
+                        $attachment_icon = get_template_directory_uri() . '/assets/images/icons/' . $attachment_extension . '-white.png';
                         //$attachment_icon = file_exists($attachment_icon) ? $attachment_icon : get_template_directory_uri() . '/assets/images/icons/unknown.png';
                     ?>
-                        <div class="attachment">
-                            <a href="<?php echo $attachment_url; ?>" target="_blank">
+                        <div class="attachment text-white">
+                            <a class="text-white" href="<?php echo $attachment_url; ?>" target="_blank">
                                 <img src="<?php echo $attachment_icon; ?>" alt="<?php echo $attachment_type; ?>">
                                 <span><?php echo $attachment_title; ?></span>
                             </a>
@@ -91,8 +91,20 @@ if (!isHTMX()) {
             </div>
         </div>
     </div>
+    <script>
 
+// when the button is clicked, remove the node labeled "single-experience-wrap"
+// from the DOM
+
+
+
+document.getElementById('backToRegion').addEventListener('click', function() {
+    document.querySelector('.single-experience-wrap').remove();
+});
+
+</script>
 </div>
+
 
 
 <?php

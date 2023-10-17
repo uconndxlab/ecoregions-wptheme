@@ -10,6 +10,37 @@ Text Domain: ecoregions
 /** Import raleway and open sans **/
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700|Open+Sans:400,700');
 
+/** CSS Variables **/
+
+/** Green set to #41523b **/
+:root {
+    --green: #41523b;
+    --green-light: #54634f;
+    --green-dark: #1d2b1d;
+    --green-darker: #0f1a0f;
+    --green-lighter: #f5fff5;
+}
+
+.bg-green {
+    background-color: var(--green);
+}
+
+.bg-green-light {
+    background-color: var(--green-light);
+}
+
+.bg-green-lighter {
+    background-color: var(--green-lighter);
+}
+
+.bg-green-dark {
+    background-color: var(--green-dark);
+}
+
+.btn-white-outline {
+    color: #fff;
+    border-color: #fff;
+}
 
 body {
     background-color: #e9ffe9;
@@ -62,11 +93,7 @@ h4 {
    
 }
 
-.bg-dark .nav-tabs .nav-item.show .nav-link {
-    background: none;
-    border: none;
-    color: #fff;
-}
+
 
 /* .pane-50 {
     position: fixed;
@@ -123,7 +150,64 @@ h4 {
     height: 100%;
 }
 
-.single-experience-wrap .nav-tabs a.nav-link {
-    border-bottom: 1px solid #ddd;
-    color: #000;
+.region-wrap{
+    max-height: 840px;
+    overflow-y:scroll;
+}
+
+
+.list-group-item {
+    border-bottom-right-radius: 0px!important;
+    border-bottom-left-radius: 0px!important;
+}
+.list-group-item a {
+    text-decoration: none;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:hover {
+    border: none;
+    border-bottom: 3px solid #fff;
+    color: #fff;
+    background-color: transparent;
+}
+
+#region-meat:has(.single-experience-wrap) #regionTabContent, #region-meat:has(.single-experience-wrap) #regionTabs {
+    display: none!important;
+}
+
+#region-meat {
+    position:relative;
+    background-color:var(--green-light);
+    padding:15px;
+}
+
+#backToRegion {
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+
+#region-meat p {
+    font-size:16px;
+    line-height: 1.5;
+    font-family: "Open Sans", sans-serif;
+    max-width:75em;
 }

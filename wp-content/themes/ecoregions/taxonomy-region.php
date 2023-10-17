@@ -25,72 +25,67 @@ $region_params = array(
 
 
 
-// Check if this is an HTMX request using your custom function
-if (isHTMX()) { ?>
-    <div class="region-info">
-        <h2><?php echo esc_html($region_name); ?></h2>
-        <p><?php echo esc_html($region_overview); ?></p>
-        <p><?php echo esc_html($region_flavor_text); ?></p>
-        <div class="region-experiences">
-            <?php
 
-            get_template_part(
-                'partials/layout/left-pane',
-                null,
-                array(
-                    'region_params' => $region_params,
-                )
-            );
-            ?>
-        </div>
-    </div>
-<?php
-} else {
-    // This is a browser request, render the full layout
-    get_header(); // Include your header template
+// This is a browser request, render the full layout
+get_header(); // Include your header template
 ?>
 
-    <div class="container-fluid">
-        <div class="row">
+<style>
 
-            <?php
-
-            get_template_part(
-                'partials/layout/left-pane',
-                null,
-                array(
-                    'region_params' => $region_params,
-                )
-            );
-            ?>
-
-            <div class="col-md-12 pane-50 pane-50-right bg-light">
-
-                <div class="region-map">
-                    <div class="region-map">
-                    <?php get_template_part('partials/components/c-regions'); ?>
-                    <h3><?php echo esc_html($region_name); ?></h3>
+</style>
 
 
-                        <!-- include a google map usa here -->
-                        <div class="map-wrap">
-                            <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Hartford,%20CT+(Hartford,%20CT)&amp;t=&amp;z=8&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population calculator map</a></iframe></div>
+<div class="container-fluid">
+    <div class="row">
+        <div id="region-meat" class="col-md-12">
+            <h2><?php echo $region_name; ?></h2>
+
+
+            <!-- Nav tabs -->
+
+            <?php if (!empty($region_overview)) : ?>
+
+                <ul class="nav nav-tabs d-flex" id="regionTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Experiences</a>
+                    </li>
+                </ul>
+            <?php endif; ?>
+
+            <!-- Tab panes -->
+            <div class="tab-content" id="regionTabContent">
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <h5><?php echo $region_flavor_text; ?></h5>
+                    <p class="my-3"><?php echo $region_overview; ?></p>
+
+                    <?php if (empty($region_overview)) : ?>
+                        <div class="alert alert-warning" role="alert">
+                            <h3>No Region Information Found</h3>
+                            <p>It looks like we haven't finished populating the content for this ecoregion. Check back soon!</p>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
 
                 </div>
-
-
-
-                <div class="experience-detail">
-
+                <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
+                    <?php
+                    // Include your experiences content here, or use your existing code to get experiences
+                    get_template_part('partials/components/c', 'experiences', array(
+                        'region' => $region_slug,
+                    ));
+                    ?>
                 </div>
+            </div>
+            <div class="single-experience-target">
 
             </div>
-
         </div>
+
     </div>
+</div>
 
 <?php
-    get_footer(); // Include your footer template
-}
+get_footer(); // Include your footer template
