@@ -14,7 +14,7 @@ if (!isHTMX()) {
 <div class="single-experience-wrap">
     <!--  link back to the region -->
     <a id="backToRegion" href="javascript:void(0);" class="back-link
-    btn bg-green-dark btn-icon text-white
+    btn bg-blue-dark btn-icon text-white
     ">
         <!-- bootstrap icon for back arrow -->
         <i class="bi bi-x"></i>

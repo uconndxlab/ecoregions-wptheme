@@ -23,7 +23,7 @@ Text Domain: ecoregions
     --blue-light:#4a5f73;
     --blue-dark:#1f2e3a;
     --blue-darker:#0f1a0f;
-    --blue-lighter:#f5fff5;
+    --blue-lighter: #4d6878;
 }
 
 .bg-green {
@@ -111,6 +111,9 @@ Text Domain: ecoregions
     color: var(--blue-darker);
 }
 
+.material-shadow {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
 
 
 body {
@@ -187,6 +190,8 @@ h4 {
 .pane-50-right {
     right: 0;
 }
+
+
 
 
 
@@ -277,7 +282,7 @@ h4 {
 
 #region-meat {
     position:relative;
-    background-color:var(--green-light);
+    background-color:var(--blue-light);
     padding:15px;
 }
 
