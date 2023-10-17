@@ -19,6 +19,11 @@ Text Domain: ecoregions
     --green-dark: #1d2b1d;
     --green-darker: #0f1a0f;
     --green-lighter: #f5fff5;
+    --blue:#384d5d;
+    --blue-light:#4a5f73;
+    --blue-dark:#1f2e3a;
+    --blue-darker:#0f1a0f;
+    --blue-lighter:#f5fff5;
 }
 
 .bg-green {
@@ -41,6 +46,72 @@ Text Domain: ecoregions
     color: #fff;
     border-color: #fff;
 }
+
+.bg-dark{
+    background-color:var(--blue-dark)!important;
+}
+
+.bg-blue-light {
+    background-color: var(--blue-light);
+}
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.bg-blue-darker {
+    background-color: var(--blue-darker);
+}
+
+.bg-blue-dark {
+    background-color: var(--blue-dark);
+}
+
+.bg-blue-lighter {
+    background-color: var(--blue-lighter);
+}
+
+.text-green {
+    color: var(--green);
+}
+
+.text-green-light {
+    color: var(--green-light);
+}
+
+.text-green-lighter {
+    color: var(--green-lighter);
+}
+
+.text-green-dark {
+    color: var(--green-dark);
+}
+
+.text-green-darker {
+    color: var(--green-darker);
+}
+
+.text-blue {
+    color: var(--blue);
+}
+
+.text-blue-light {
+    color: var(--blue-light);
+}
+
+.text-blue-lighter {
+    color: var(--blue-lighter);
+}
+
+.text-blue-dark {
+    color: var(--blue-dark);
+}
+
+.text-blue-darker {
+    color: var(--blue-darker);
+}
+
+
 
 body {
     background-color: #e9ffe9;
@@ -173,7 +244,7 @@ h4 {
 }
 
 .nav-tabs .nav-link {
-    font-size: 1.2rem;
+    font-size: 1srem;
     padding: 1rem 2rem;
     border: none;
     border-radius: 0;
@@ -187,10 +258,21 @@ h4 {
     border-bottom: 3px solid #fff;
     color: #fff;
     background-color: transparent;
+    font-weight: bold;
+}
+
+
+#region-meat h2 {
+    transition: all 0.3s ease-in-out;
 }
 
 #region-meat:has(.single-experience-wrap) #regionTabContent, #region-meat:has(.single-experience-wrap) #regionTabs {
     display: none!important;
+}
+
+#region-meat:has(.single-experience-wrap) h2{
+    font-size:16px!important;
+    margin-bottom:0!important;
 }
 
 #region-meat {
