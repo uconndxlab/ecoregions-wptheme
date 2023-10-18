@@ -62,7 +62,7 @@ get_header();
 
 
 
-                    <div style="position: absolute; top:50px; right:20px; z-index:999;" class="dropdown">
+                    <div style="position: absolute; top:50px; right:20px; z-index:999;" class="dropdown d-none">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="regionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Select Region
                         </button>
@@ -80,23 +80,28 @@ get_header();
             </div>
 
             <div class="col-md-5 p-4 region-wrap bg-blue-dark"">
-
-                <div class=" region-info text-white">
+            <div class="filter-regions mb-4 dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="regionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Region
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="regionsDropdown">
+                    <?php while ($regions->fetch()) : ?>
+                        <li><a class="dropdown-item" hx-get="<?php echo $regions->display('permalink'); ?>" hx-push-url="false" hx-target=".region-info" hx-select="#region-meat" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
+                    <?php endwhile; ?>
+                </ul>
+            </div>
+            <div class=" 
+            clearfix
+             region-info text-white
+             bg-blue-light p-4 material-shadow
+             mt-5
+             ">
 
                 <h2>Let's explore Connecticut's Ecoregions!</h2>
                 <p>Select a region on the map or in the dropdown menu to learn more about it.</p>
                 <p>Each region has a unique combination of geology, topography, soils, climate, and plant and animal communities. </p>
                 <!-- show the dropdown menu -->
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="regionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select Region
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="regionsDropdown">
-                        <?php while ($regions->fetch()) : ?>
-                            <li><a class="dropdown-item" hx-get="<?php echo $regions->display('permalink'); ?>" hx-push-url="false" hx-target=".region-info" hx-select="#region-meat" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
-                        <?php endwhile; ?>
-                    </ul>
-                </div>
+
 
             </div>
         </div>

@@ -17,8 +17,9 @@ if (!isHTMX()) {
     btn bg-blue-dark btn-icon text-white
     ">
         <!-- bootstrap icon for back arrow -->
-        <i class="bi bi-x"></i>
-        close
+        <i class="bi bi-arrow-left
+        "></i>
+        back
     </a>
 
     <h1><?php the_title(); ?></h1>

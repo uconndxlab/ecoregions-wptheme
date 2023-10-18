@@ -131,9 +131,9 @@ h6 {
 }
 
 h1 {
-    font-size: 2.125rem !important;
+    font-size: 2.125rem;
     line-height: 2.5rem;
-    letter-spacing: .0073529412em !important;
+    letter-spacing: .0073529412em;
 }
 
 h2 {
@@ -282,8 +282,6 @@ h4 {
 
 #region-meat {
     position:relative;
-    background-color:var(--blue-light);
-    padding:15px;
 }
 
 #backToRegion {
@@ -297,4 +295,28 @@ h4 {
     line-height: 1.5;
     font-family: "Open Sans", sans-serif;
     max-width:75em;
+}
+
+.hero {
+    border-bottom:4px solid #69a13f;
+}
+
+.hero h1 {
+    font-size:24px;
+}
+
+.hero p {
+    font-size:16px;
+    line-height: 1.7;
+}
+
+.region-wrap {
+    position:relative;
+}
+
+.filter-regions {
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index: 999;
 }
