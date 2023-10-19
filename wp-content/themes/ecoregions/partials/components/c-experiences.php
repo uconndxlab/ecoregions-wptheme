@@ -14,6 +14,8 @@ $experiences = get_posts(array(
     )
 ));
 
+
+
 ?>
 
 <?php
@@ -43,13 +45,8 @@ if (!empty($experiences)) {
             <ul class="list-group">
 
 
-                <li class="list-group-item my-2 bg-blue-lighter">
-                    <a class="list-group-item-action text-white" hx-target=".single-experience-target" 
-                    hx-get="<?php echo get_permalink($experience->ID); ?>" 
-                    hx-push-url="false" 
-                    hx-select=".single-experience-wrap" 
-                    
-                    href="<?php echo get_permalink($experience->ID); ?>">
+                <li class="list-group-item my-2 bg-alert text-blue-darker">
+                    <a class="list-group-item-action text-blue-darker" hx-target=".single-experience-target" hx-get="<?php echo get_permalink($experience->ID); ?>" hx-push-url="false" hx-select=".single-experience-wrap" href="<?php echo get_permalink($experience->ID); ?>">
                         <h4><?php echo get_the_title($experience->ID); ?></h4>
                         <p> <?php echo get_the_excerpt($experience->ID); ?></p>
 
@@ -57,23 +54,23 @@ if (!empty($experiences)) {
 
                     </a>
                     <?php // do the badges for habitats and experience types
-                        if (!empty($habitat_names)) {
-                            foreach ($habitat_names as $habitat_name) {
-                        ?>
-                                <span class="badge bg-green"><?php echo $habitat_name; ?></span>
-                            <?php
-                            }
-                        }
-
-                        if (!empty($experience_type_names)) {
-                            foreach ($experience_type_names as $experience_type_name) {
-                            ?>
-                                <span class="badge bg-secondary"><?php echo $experience_type_name; ?></span>
+                    if (!empty($habitat_names)) {
+                        foreach ($habitat_names as $habitat_name) {
+                    ?>
+                            <span class="badge bg-green"><?php echo $habitat_name; ?></span>
                         <?php
-
-                            }
                         }
+                    }
+
+                    if (!empty($experience_type_names)) {
+                        foreach ($experience_type_names as $experience_type_name) {
                         ?>
+                            <span class="badge bg-secondary"><?php echo $experience_type_name; ?></span>
+                    <?php
+
+                        }
+                    }
+                    ?>
                 </li>
 
             </ul>

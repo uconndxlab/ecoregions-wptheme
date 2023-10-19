@@ -71,6 +71,50 @@ get_header(); // Include your header template
 
                 </div>
                 <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
+                    <!-- add filter dropdowns for "activity_type" and "habitat" -->
+                    <form
+                        action="/"
+                        id="habitat-form" method="get">
+                    <div class="d-flex justify-content-between">
+                       
+                            <div class="filter-experiences mb-4">
+                                <select id="habitat-select" name="habitat">
+                                    <option value="">All Habitats</option>
+                                    <?php
+                                    $habitat_params = array(
+                                        'limit' => -1,
+                                        'orderby' => 'name ASC'
+                                    );
+
+                                    $habitats = pods('habitat', $habitat_params);
+
+                                    while ($habitats->fetch()) :
+                                    ?>
+                                        <option value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="filter-experiences mb-4">
+                                <select id="activity-select" name="activity">
+                                    <option value="">All Experience Types</option>
+                                    <?php
+                                    $experience_type_params = array(
+                                        'limit' => -1,
+                                        'orderby' => 'name ASC'
+                                    );
+
+                                    $experience_types = pods('experience_type', $experience_type_params);
+
+                                    while ($experience_types->fetch()) :
+                                    ?>
+                                        <option value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                        
+                    </div>
+                    </form>
                     <?php
                     // Include your experiences content here, or use your existing code to get experiences
                     get_template_part('partials/components/c', 'experiences', array(

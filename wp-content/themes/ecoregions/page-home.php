@@ -136,7 +136,7 @@ get_header();
                 [-72.8725992050337, 41.837486521688604],
                 [-72.84438786871107, 41.95087354088623],
             ]
-        },
+        }
     }
 
     let layerStates = {
@@ -185,8 +185,8 @@ get_header();
                 data: polygon
             },
             paint: {
-                "fill-color": "#088",
-                "fill-opacity": 0.4
+                "fill-color": "#1f2e3a",
+                "fill-opacity": 0.2
             }
         });
 
@@ -194,8 +194,8 @@ get_header();
 
         // when the layer is hovered, thicken its border and lighten its fill, then show a tooltip with its name
         map.on('mouseenter', regionSlug + "-layer", function() {
-            map.setPaintProperty(regionSlug + "-layer", 'fill-opacity', 0.8);
-            map.setPaintProperty(regionSlug + "-layer", 'fill-color', '#088');
+            map.setPaintProperty(regionSlug + "-layer", 'fill-opacity', 0.4);
+            map.setPaintProperty(regionSlug + "-layer", 'fill-color', '#1f2e3a');
             map.getCanvas().style.cursor = 'pointer';
             map.setFeatureState({
                 source: region,
@@ -204,6 +204,9 @@ get_header();
                 hover: true
             });
 
+     
+
+
 
 
             
@@ -211,8 +214,8 @@ get_header();
 
         // when your mouse moves off the layer, reset the border and fill
         map.on('mouseleave', regionSlug + "-layer", function() {
-            map.setPaintProperty(regionSlug + "-layer", 'fill-opacity', 0.4);
-            map.setPaintProperty(regionSlug + "-layer", 'fill-color', '#088');
+            map.setPaintProperty(regionSlug + "-layer", 'fill-opacity', 0.2);
+            map.setPaintProperty(regionSlug + "-layer", 'fill-color', '#1f2e3a');
             map.getCanvas().style.cursor = '';
             map.setFeatureState({
                 source: region,
