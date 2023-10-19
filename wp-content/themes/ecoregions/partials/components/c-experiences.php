@@ -45,7 +45,7 @@ if (!empty($experiences)) {
             <ul class="list-group">
 
 
-                <li class="list-group-item my-2 bg-alert text-blue-darker">
+                <li class="list-group-item my-2 alert-warning text-blue-darker">
                     <a class="list-group-item-action text-blue-darker" hx-target=".single-experience-target" hx-get="<?php echo get_permalink($experience->ID); ?>" hx-push-url="false" hx-select=".single-experience-wrap" href="<?php echo get_permalink($experience->ID); ?>">
                         <h4><?php echo get_the_title($experience->ID); ?></h4>
                         <p> <?php echo get_the_excerpt($experience->ID); ?></p>

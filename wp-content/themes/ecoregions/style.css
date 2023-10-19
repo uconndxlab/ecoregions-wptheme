@@ -191,6 +191,11 @@ h4 {
     right: 0;
 }
 
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
 
 
 
