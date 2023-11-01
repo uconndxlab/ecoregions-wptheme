@@ -107,9 +107,6 @@ if (!empty($experiences)) {
             </ul>
         </div>
 
-
-
-
     <?php
     }
 } else {  ?>
