@@ -81,7 +81,7 @@ get_header(); // Include your header template
                 </div>
                 <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
                     <!-- add filter dropdowns for "activity_type" and "habitat" -->
-                    <form method="get" hx-boost="true" hx-trigger="change" hx-target=".experience-results" hx-select=".experience-results" hx-push-url="true" action="/region/<?php echo $region_slug; ?>/">
+                    <form method="get" hx-boost="true" hx-trigger="change" hx-target=".experience-results" hx-select=".experience-results" hx-push-url="false" action="/region/<?php echo $region_slug; ?>/">
                         <div class="d-flex justify-content-between">
 
                             <div class="filter-experiences mb-4">
