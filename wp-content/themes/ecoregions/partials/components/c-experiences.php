@@ -1,8 +1,20 @@
 <?php
 $region_slug = $args['region'];
+$requested_habitat = $args['habitat'];
+$requested_experience = $args['experience_type'];
+
+if(!isset($requested_habitat)) {
+    $requested_habitat = null;
+}
+
+if(!isset($requested_experience)) {
+    $requested_experience = null;
+}
+
+
 
 // Get the experiences in this region
-$experiences = get_posts(array(
+$params = array(
     'post_type' => 'experience',
     'posts_per_page' => -1,
     'tax_query' => array(
@@ -12,7 +24,10 @@ $experiences = get_posts(array(
             'terms' => $region_slug,
         )
     )
-));
+);
+
+
+$experiences = get_posts($params);
 
 
 
@@ -25,27 +40,43 @@ if (!empty($experiences)) {
     foreach ($experiences as $experience) {
         $habitats = get_the_terms($experience->ID, 'habitat');
         $habitat_names = array();
-        if (!empty($habitats)) {
+        if (isset($habitats)) {
             foreach ($habitats as $habitat) {
-                $habitat_names[] = $habitat->name;
+                $habitat_names[] = strtolower($habitat->name);
+            }
+
+            if (isset($requested_habitat)) {
+                if (!in_array($requested_habitat, $habitat_names)) {
+                    continue;
+                }
             }
         }
 
         $experience_types = get_the_terms($experience->ID, 'experience_type');
         $experience_type_names = array();
-        if (!empty($experience_types)) {
+        $experience_type_slugs = array();
+        if (isset($experience_types)) {
             foreach ($experience_types as $experience_type) {
-                $experience_type_names[] = $experience_type->name;
+
+                $experience_type_names[] = strtolower($experience_type->name);
+                $experience_type_slugs[] = strtolower($experience_type->slug);
             }
+                if (isset($requested_experience)) {
+                    if (!in_array($requested_experience, $experience_type_slugs)) {
+                        continue;
+                    }
+                }
         }
-
-
 ?>
         <div>
             <ul class="list-group">
 
 
-                <li class="list-group-item my-2 alert-warning text-blue-darker">
+                <li
+                <?php if(isset($display)) { ?>
+                    style="display: <?php echo $display; ?>"
+                <?php } ?>
+                class="list-group-item my-2 alert-warning text-blue-darker">
                     <a class="list-group-item-action text-blue-darker" hx-target=".single-experience-target" hx-get="<?php echo get_permalink($experience->ID); ?>" hx-push-url="false" hx-select=".single-experience-wrap" href="<?php echo get_permalink($experience->ID); ?>">
                         <h4><?php echo get_the_title($experience->ID); ?></h4>
                         <p> <?php echo get_the_excerpt($experience->ID); ?></p>

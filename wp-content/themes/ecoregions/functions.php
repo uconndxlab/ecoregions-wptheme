@@ -41,6 +41,7 @@ function ecoregions_theme_support() {
 }
 
 
+
 function ecoregions_run_hooks() {
     add_action('after_setup_theme', 'ecoregions_theme_support' );
     add_action('wp_enqueue_scripts', 'ecoregions_enqueue_global_scripts');
@@ -51,3 +52,6 @@ ecoregions_run_hooks();
 function isHTMX() {
     return isset($_SERVER['HTTP_HX_REQUEST']);
 }
+
+
+

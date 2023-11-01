@@ -15,6 +15,17 @@ $region_overview = $region_pod->field('overview');
 $region_flavor_text = $region_pod->field('flavor_text');
 $region_slug = $region->slug;
 
+$experience_type = $_GET['ex_type'];
+$habitat = $_GET['hab'];
+
+if (!isset($experience_type) or $experience_type == 'all') {
+    $experience_type = null;
+}
+
+if (empty($habitat) or $habitat == 'all') {
+    $habitat = null;
+}
+
 $region_params = array(
     'region_name' => $region->name,
     'region_overview' => $region_overview,
@@ -22,8 +33,6 @@ $region_params = array(
     'region_id' => $region->term_id,
     'region_slug' => $region_slug
 );
-
-
 
 
 // This is a browser request, render the full layout
@@ -73,13 +82,21 @@ get_header(); // Include your header template
                 <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
                     <!-- add filter dropdowns for "activity_type" and "habitat" -->
                     <form
-                        action="/"
-                        id="habitat-form" method="get">
+                        method="get"
+                        hx-boost="true"
+                        hx-trigger="change"
+                        hx-target=".experience-results"
+                        hx-select=".experience-results"
+                        action = "/region/<?php echo $region_slug; ?>/" 
                     <div class="d-flex justify-content-between">
-                       
+
                             <div class="filter-experiences mb-4">
-                                <select id="habitat-select" name="habitat">
-                                    <option value="">All Habitats</option>
+                                <select id="habitat-select" name="hab"
+                                >
+                                    <option
+                                    hx-get="/region/<?php echo $region_slug; ?>/"
+                                    hx-trigger="change"
+                                    value="">All Habitats</option>
                                     <?php
                                     $habitat_params = array(
                                         'limit' => -1,
@@ -90,14 +107,20 @@ get_header(); // Include your header template
 
                                     while ($habitats->fetch()) :
                                     ?>
-                                        <option value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                        <option 
+                                        
+                                        value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
 
                             <div class="filter-experiences mb-4">
-                                <select id="activity-select" name="activity">
-                                    <option value="">All Experience Types</option>
+                                <select id="activity-select" name="ex_type">
+                                    <option
+                                    hx-get="/region/<?php echo $region_slug; ?>/"
+                                    hx-trigger="change"
+
+                                     value="all">All Experience Types</option>
                                     <?php
                                     $experience_type_params = array(
                                         'limit' => -1,
@@ -108,19 +131,24 @@ get_header(); // Include your header template
 
                                     while ($experience_types->fetch()) :
                                     ?>
-                                        <option value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
+                                        <option
+                                        value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
                         
                     </div>
                     </form>
-                    <?php
-                    // Include your experiences content here, or use your existing code to get experiences
-                    get_template_part('partials/components/c', 'experiences', array(
-                        'region' => $region_slug,
-                    ));
-                    ?>
+                    <div class="experience-results">
+                        <?php
+                        // Include your experiences content here, or use your existing code to get experiences
+                        get_template_part('partials/components/c', 'experiences', array(
+                            'region' => $region_slug,
+                            'habitat' => $habitat,
+                            'experience_type' => $experience_type
+                        ));
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="single-experience-target">
@@ -130,6 +158,18 @@ get_header(); // Include your header template
 
     </div>
 </div>
+
+<script>
+    // when one of the dropdowns is changed, submit the form
+
+    document.querySelector('#habitat-select').addEventListener('change', function() {
+        document.querySelector('form').submit();
+    });
+
+    document.querySelector('#activity-select').addEventListener('change', function() {
+        document.querySelector('form').submit();
+    });
+</script>
 
 <?php
 get_footer(); // Include your footer template

@@ -11,7 +11,7 @@ get_header();
         ?>
 
         <?php else: ?>
-            <p>No posts found.</p>
+            <p>No experiences found.</p>
         <?php endif; ?>
 
     </main>
