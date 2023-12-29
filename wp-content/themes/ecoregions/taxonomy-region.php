@@ -97,7 +97,12 @@ get_header(); // Include your header template
 
                                     while ($habitats->fetch()) :
                                     ?>
-                                        <option value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                        <option 
+                                        <?php if ($habitats->field('slug') == $habitat) : ?>
+                                            selected
+                                        <?php endif; ?>
+                                        
+                                        value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>

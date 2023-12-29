@@ -80,7 +80,9 @@ get_header();
                 <!-- display the town map gif image -->
                 <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/images/townmap_blue.gif" alt="Connecticut's Ecoregions" class="img-fluid" /> -->
 
-                <div id="map" class="map d-none d-lg-block"></div>
+                <div class="map d-none d-lg-block">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/ct-placeholder.png" alt="Connecticut's Ecoregions" class="img-fluid" />
+                </div>
             </div>
 
             <div class="col-md-5 p-4 region-wrap bg-blue-dark"">

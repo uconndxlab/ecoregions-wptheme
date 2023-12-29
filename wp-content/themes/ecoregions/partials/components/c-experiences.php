@@ -26,6 +26,24 @@ $params = array(
     )
 );
 
+if(isset($requested_habitat)) {
+    echo "we have a requested habitat: " . $requested_habitat;
+    $params['tax_query'][] = array(
+        'taxonomy' => 'habitat',
+        'field' => 'slug',
+        'terms' => $requested_habitat,
+    );
+}
+
+if(isset($requested_experience)) {
+    echo "we have a requested experience: " . $requested_experience;
+    $params['tax_query'][] = array(
+        'taxonomy' => 'experience_type',
+        'field' => 'slug',
+        'terms' => $requested_experience,
+    );
+}
+    
 
 $experiences = get_posts($params);
 
@@ -44,12 +62,6 @@ if (!empty($experiences)) {
             foreach ($habitats as $habitat) {
                 $habitat_names[] = strtolower($habitat->name);
             }
-
-            if (isset($requested_habitat)) {
-                if (!in_array($requested_habitat, $habitat_names)) {
-                    continue;
-                }
-            }
         }
 
         $experience_types = get_the_terms($experience->ID, 'experience_type');
@@ -61,11 +73,6 @@ if (!empty($experiences)) {
                 $experience_type_names[] = strtolower($experience_type->name);
                 $experience_type_slugs[] = strtolower($experience_type->slug);
             }
-                if (isset($requested_experience)) {
-                    if (!in_array($requested_experience, $experience_type_slugs)) {
-                        continue;
-                    }
-                }
         }
 ?>
         <div>
