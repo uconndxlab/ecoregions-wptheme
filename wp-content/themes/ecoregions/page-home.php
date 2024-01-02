@@ -45,9 +45,9 @@ get_header();
 
 <!-- Regions Section -->
 <section id="regions" class="regions bg-dark">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row no-gutters p-0">
-            <div class="col-md-8 no-gutters p-0" style="position: relative;">
+            <div class="col-md-8 no-gutters p-4" style="position: relative;">
                 <div>
                     <?php
                     $params = array(
@@ -67,7 +67,7 @@ get_header();
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="regionsDropdown">
                             <?php while ($regions->fetch()) : ?>
-                                <li><a class="dropdown-item" hx-get="<?php echo $regions->display('permalink'); ?>" hx-push-url="false" hx-target=".region-info" hx-select="#region-meat" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
+                                <li><a class="dropdown-item" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
                             <?php endwhile; ?>
                             <?php // reset the regions query
                             $regions->reset(); ?>
@@ -80,7 +80,7 @@ get_header();
                 <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/images/townmap_blue.gif" alt="Connecticut's Ecoregions" class="img-fluid" /> -->
 
                 <div class="map d-none d-lg-block">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/CT_Map.svg" alt="Connecticut's Ecoregions" class="img-fluid" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/CT_Map_NoKey.gif" alt="Connecticut's Ecoregions" class="img-fluid" />
                 </div>
             </div>
 
@@ -91,7 +91,7 @@ get_header();
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="regionsDropdown">
                     <?php while ($regions->fetch()) : ?>
-                        <li><a class="dropdown-item" hx-get="<?php echo $regions->display('permalink'); ?>" hx-push-url="false" hx-target=".region-info" hx-select="#region-meat" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
+                        <li><a class="dropdown-item" href="<?php echo $regions->display('permalink'); ?>"><?php echo $regions->display('name'); ?></a></li>
                     <?php endwhile; ?>
                 </ul>
             </div>

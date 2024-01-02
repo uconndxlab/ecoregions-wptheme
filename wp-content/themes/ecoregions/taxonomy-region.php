@@ -59,17 +59,27 @@ get_header(); // Include your header template
 
                 <ul class="nav nav-tabs d-flex" id="regionTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                        <a class="nav-link" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Stuff To Do</a>
+                    <li class="nav-item 
+                    <?php if (($experience_type) or ($habitat)) : ?>
+                        active
+                    <?php endif; ?>
+                    " role="presentation"
+                    
+                    >
+                        <a class="nav-link
+                        <?php if (($experience_type) or ($habitat)) : ?>
+                        active
+                    <?php endif; ?>
+                        " id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Stuff To Do</a>
                     </li>
                 </ul>
             <?php endif; ?>
 
             <!-- Tab panes -->
             <div class="tab-content" id="regionTabContent">
-                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="tab-pane fade" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                     <h5><?php echo $region_flavor_text; ?></h5>
                     <div class="my-3"><?php echo $region_overview; ?></div>
 
@@ -82,14 +92,18 @@ get_header(); // Include your header template
 
 
                 </div>
-                <div class="tab-pane fade" id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
+                <div class="tab-pane fade
+                <?php if (($experience_type) or ($habitat)) : ?>
+                        active show
+                    <?php endif; ?>
+                " id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
                     <!-- add filter dropdowns for "activity_type" and "habitat" -->
-                    <form method="get" hx-boost="true" hx-trigger="change" hx-target=".experience-results" hx-select=".experience-results" hx-push-url="false" action="/region/<?php echo $region_slug; ?>/">
+                    <form method="get" action="/region/<?php echo $region_slug; ?>/" id="filter_experiences" >
                         <div class="d-flex justify-content-between">
 
                             <div class="filter-experiences mb-4">
                                 <select id="habitat-select" name="hab">
-                                    <option hx-get="/region/<?php echo $region_slug; ?>/" hx-trigger="change" value="">All Habitats</option>
+                                    <option value="">All Habitats</option>
                                     <?php
                                     $habitat_params = array(
                                         'limit' => -1,
@@ -107,7 +121,7 @@ get_header(); // Include your header template
 
                             <div class="filter-experiences mb-4">
                                 <select id="activity-select" name="ex_type">
-                                    <option hx-get="/region/<?php echo $region_slug; ?>/" hx-trigger="change" value="all">All Experience Types</option>
+                                    <option value="all">All Experience Types</option>
                                     <?php
                                     $experience_type_params = array(
                                         'limit' => -1,
@@ -152,11 +166,12 @@ get_header(); // Include your header template
         // when one of the dropdowns is changed, submit the form
 
         document.querySelector('#habitat-select').addEventListener('change', function() {
-            document.querySelector('form').submit();
+            document.querySelector('#filter_experiences').submit();
+            
         });
 
         document.querySelector('#activity-select').addEventListener('change', function() {
-            document.querySelector('form').submit();
+            document.querySelector('#filter_experiences').submit();
         });
     </script>
 
