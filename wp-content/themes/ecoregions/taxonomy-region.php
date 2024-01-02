@@ -11,7 +11,10 @@ $region = get_queried_object();
 // get the pods field 'overview'
 $region_pod = pods('region', $region->term_id);
 $region_name = $region->name;
-$region_overview = $region_pod->field('overview');
+$region_overview = $region_pod->display('overview');
+// since we're using the wysiwyg editor, we need to use the display function to get the content
+
+
 $region_flavor_text = $region_pod->field('flavor_text');
 $region_slug = $region->slug;
 
@@ -26,6 +29,7 @@ if (empty($habitat) or $habitat == 'all') {
     $habitat = null;
 }
 
+
 $region_params = array(
     'region_name' => $region->name,
     'region_overview' => $region_overview,
@@ -39,13 +43,9 @@ $region_params = array(
 get_header(); // Include your header template
 ?>
 
-<style>
 
-</style>
-
-
-<div class="container-fluid text-white">
-    <div class="row bg-dark">
+<div id="region-taxnonomy" class="container-fluid text-white">
+    <div class="row bg-dark pt-5">
         <div class="col-md-6">
             <img style="position:sticky; top:25px;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.svg" alt="<?php echo $region_name; ?>">
         </div>
@@ -71,7 +71,7 @@ get_header(); // Include your header template
             <div class="tab-content" id="regionTabContent">
                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                     <h5><?php echo $region_flavor_text; ?></h5>
-                    <p class="my-3"><?php echo $region_overview; ?></p>
+                    <div class="my-3"><?php echo $region_overview; ?></div>
 
                     <?php if (empty($region_overview)) : ?>
                         <div class="alert alert-warning" role="alert">
@@ -100,12 +100,7 @@ get_header(); // Include your header template
 
                                     while ($habitats->fetch()) :
                                     ?>
-                                        <option 
-                                        <?php if ($habitats->field('slug') == $habitat) : ?>
-                                            selected
-                                        <?php endif; ?>
-                                        
-                                        value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                        <option <?php if ($habitats->field('slug') == $habitat) : ?> selected <?php endif; ?> value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
@@ -148,9 +143,10 @@ get_header(); // Include your header template
             </div>
             <div class="single-experience-target">
 
-</div>
+            </div>
         </div>
     </div>
+</div>
 
     <script>
         // when one of the dropdowns is changed, submit the form

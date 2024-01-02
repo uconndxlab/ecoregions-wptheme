@@ -1,7 +1,7 @@
 <?php
 
 $experience_pod = pods('experience', $post->ID);
-$description = $experience_pod->field('description');
+$description = $experience_pod->display('description');
 $attachments = $experience_pod->field('attachments');
 // region is a taxonomy. get the region for the current experience
 $current_region = get_the_terms($post->ID, 'region')[0]->name;
