@@ -44,11 +44,10 @@ get_header();
 </section>
 
 <!-- Regions Section -->
-<section id="regions" class="regions">
-    <div class="container-fluid">
+<section id="regions" class="regions bg-dark">
+    <div class="container">
         <div class="row no-gutters p-0">
-
-            <div class="col-md-7 no-gutters p-0" style="position: relative;">
+            <div class="col-md-8 no-gutters p-0" style="position: relative;">
                 <div>
                     <?php
                     $params = array(
@@ -81,11 +80,11 @@ get_header();
                 <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/images/townmap_blue.gif" alt="Connecticut's Ecoregions" class="img-fluid" /> -->
 
                 <div class="map d-none d-lg-block">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/ct-placeholder.png" alt="Connecticut's Ecoregions" class="img-fluid" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/CT_Map.svg" alt="Connecticut's Ecoregions" class="img-fluid" />
                 </div>
             </div>
 
-            <div class="col-md-5 p-4 region-wrap bg-blue-dark"">
+            <div class="col-md-4 p-4 region-wrap bg-blue-dark"">
             <div class="filter-regions mb-4 dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="regionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     Select Region
@@ -103,7 +102,7 @@ get_header();
              mt-5
              ">
 
-                <h2>Let's explore Connecticut's Ecoregions!</h2>
+                <h2>Let's explore!</h2>
                 <p>Select a region on the map or in the dropdown menu to learn more about it.</p>
                 <p>Each region has a unique combination of geology, topography, soils, climate, and plant and animal communities. </p>
                 <!-- show the dropdown menu -->

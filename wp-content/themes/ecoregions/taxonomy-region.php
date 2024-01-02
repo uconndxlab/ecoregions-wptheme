@@ -44,9 +44,12 @@ get_header(); // Include your header template
 </style>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div id="region-meat" class="col-md-12">
+<div class="container-fluid text-white">
+    <div class="row bg-dark">
+        <div class="col-md-6">
+            <img style="position:sticky; top:25px;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.svg" alt="<?php echo $region_name; ?>">
+        </div>
+        <div id="region-meat" class="col-md-6">
             <h2><?php echo $region_name; ?></h2>
 
 
@@ -59,7 +62,7 @@ get_header(); // Include your header template
                         <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Experiences</a>
+                        <a class="nav-link" id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Stuff To Do</a>
                     </li>
                 </ul>
             <?php endif; ?>
