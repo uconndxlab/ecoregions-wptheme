@@ -27,7 +27,7 @@ $params = array(
 );
 
 if(isset($requested_habitat)) {
-    echo "we have a requested habitat: " . $requested_habitat;
+    echo "Habitat Type: " . $requested_habitat . "<br>";
     $params['tax_query'][] = array(
         'taxonomy' => 'habitat',
         'field' => 'slug',
@@ -36,7 +36,7 @@ if(isset($requested_habitat)) {
 }
 
 if(isset($requested_experience)) {
-    echo "we have a requested experience: " . $requested_experience;
+    echo "Experience Type: " . $requested_experience . "<br>";
     $params['tax_query'][] = array(
         'taxonomy' => 'experience_type',
         'field' => 'slug',
@@ -119,7 +119,7 @@ if (!empty($experiences)) {
 } else {  ?>
 
     <div class="alert alert-warning">
-        There are no experiences available for this region.
+        There are no experiences available matching your query.
     </div>
 
 <?php }

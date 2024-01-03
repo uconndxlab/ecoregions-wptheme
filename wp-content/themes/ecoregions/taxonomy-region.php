@@ -58,8 +58,21 @@ get_header(); // Include your header template
             <?php if (!empty($region_overview)) : ?>
 
                 <ul class="nav nav-tabs d-flex" id="regionTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                    <li class="nav-item
+                    <?php if (empty($experience_type) and empty($habitat)) : ?>
+                        active
+                    <?php endif; ?>
+                    
+                    " 
+                    role="presentation">
+                        <a 
+                        class="nav-link
+                        <?php if (empty($experience_type) and empty($habitat)) : ?>
+                            active
+                        <?php endif; ?>
+                        " 
+                        
+                        id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                     </li>
                     <li class="nav-item 
                     <?php if (($experience_type) or ($habitat)) : ?>
@@ -79,7 +92,12 @@ get_header(); // Include your header template
 
             <!-- Tab panes -->
             <div class="tab-content" id="regionTabContent">
-                <div class="tab-pane fade" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="tab-pane fade
+                <?php if (empty($experience_type) and empty($habitat)) : ?>
+                        active show
+                    <?php endif; ?>
+                
+                " id="overview" role="tabpanel" aria-labelledby="overview-tab">
                     <h5><?php echo $region_flavor_text; ?></h5>
                     <div class="my-3"><?php echo $region_overview; ?></div>
 
@@ -114,7 +132,13 @@ get_header(); // Include your header template
 
                                     while ($habitats->fetch()) :
                                     ?>
-                                        <option <?php if ($habitats->field('slug') == $habitat) : ?> selected <?php endif; ?> value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                        <option 
+
+                                        <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>
+                                            selected
+                                        <?php endif; ?>
+                                            
+                                            value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
@@ -132,7 +156,11 @@ get_header(); // Include your header template
 
                                     while ($experience_types->fetch()) :
                                     ?>
-                                        <option value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
+                                        <option 
+                                        <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>
+                                            selected
+                                        <?php endif; ?>
+                                        value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
@@ -173,6 +201,15 @@ get_header(); // Include your header template
         document.querySelector('#activity-select').addEventListener('change', function() {
             document.querySelector('#filter_experiences').submit();
         });
+
+        // if the url doesn't have a query string, activate the first tab
+        // otherwise, activate the second tab
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const habitat = urlParams.get('hab');
+
+
     </script>
 
     <?php
