@@ -14,10 +14,10 @@ Text Domain: ecoregions
 
 /** Green set to #41523b **/
 :root {
-    --green: #41523b;
-    --green-light: #54634f;
-    --green-dark: #1d2b1d;
-    --green-darker: #0f1a0f;
+    --green: #588d45;
+    --green-light: #95c774;
+    --green-dark: #265526;
+    --green-darker: #0d240d;
     --green-lighter: #f5fff5;
     --blue:#384d5d;
     --blue-light:#4a5f73;
@@ -30,6 +30,30 @@ Text Domain: ecoregions
     --region-pink:#f8cfd0;
     --region-purple:#ccb5da;
     --region-yellow:#f7e9a7;
+}
+
+.badge-freshwater-aquatic {
+    /** some fresh light blue */
+    background-color: #b3e5fc!important;
+    color: var(--blue-dark)
+}
+
+.badge-terrestrial {
+    /** some fresh light green */
+    background-color: #c8e6c9!important;
+    color: var(--green-dark);
+}
+
+.badge-hike-bike {
+    /** some earthy dark brown */
+    background-color: #fca573!important;
+    color: #1f0b05;
+}
+
+.badge-activity {
+    /** black and white */
+    background-color: #000!important;
+    color: #fff;
 }
 
 .bg-green {
@@ -80,27 +104,27 @@ Text Domain: ecoregions
 
 
 .bg-region-blue {
-    background-color: var(--region-blue);
+    background-color: var(--region-blue)!important;
 }
 
 .bg-region-red {
-    background-color: var(--region-red);
+    background-color: var(--region-red)!important;
 }
 
 .bg-region-green {
-    background-color: var(--region-green);
+    background-color: var(--region-green)!important;
 }
 
 .bg-region-pink {
-    background-color: var(--region-pink);
+    background-color: var(--region-pink)!important;
 }
 
 .bg-region-purple {
-    background-color: var(--region-purple);
+    background-color: var(--region-purple)!important;
 }
 
 .bg-region-yellow {
-    background-color: var(--region-yellow);
+    background-color: var(--region-yellow)!important;
 }
 
 
@@ -340,6 +364,10 @@ h4 {
     border-bottom:4px solid #69a13f;
 }
 
+.region-northwest-uplands .hero {
+    border-color: var(--region-blue);
+}
+
 .hero h1 {
     font-size:24px;
 }
@@ -358,4 +386,18 @@ h4 {
     right:0px;
     top:0px;
     z-index: 999;
+}
+
+.region-northwest-uplands {
+    border-top:5px solid var(--region-blue);
+    border-color: var(--region-blue);
+}
+
+.region-northwest-uplands h2 .badge {
+    background-color: var(--region-blue);
+    /** make it square **/
+    width: 1.5em;
+    height: 1.5em;
+    position:relative;
+    bottom:-0.2em;
 }

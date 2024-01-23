@@ -83,7 +83,7 @@ if (!empty($experiences)) {
                 <?php if(isset($display)) { ?>
                     style="display: <?php echo $display; ?>"
                 <?php } ?>
-                class="list-group-item my-2 alert-warning text-blue-darker">
+                class="list-group-item my-2 bg-white text-blue-darker">
                     <a class="list-group-item-action text-blue-darker" hx-target=".single-experience-target" hx-get="<?php echo get_permalink($experience->ID); ?>" hx-push-url="false" hx-select=".single-experience-wrap" href="<?php echo get_permalink($experience->ID); ?>">
                         <h4><?php echo get_the_title($experience->ID); ?></h4>
                         <p> <?php echo get_the_excerpt($experience->ID); ?></p>
@@ -95,7 +95,8 @@ if (!empty($experiences)) {
                     if (!empty($habitat_names)) {
                         foreach ($habitat_names as $habitat_name) {
                     ?>
-                            <span class="badge bg-green"><?php echo $habitat_name; ?></span>
+
+                            <span class="badge <?php echo "badge-" . str_replace(" ", "-", $habitat_name); ?>"><?php echo $habitat_name; ?></span>
                         <?php
                         }
                     }
@@ -103,7 +104,9 @@ if (!empty($experiences)) {
                     if (!empty($experience_type_names)) {
                         foreach ($experience_type_names as $experience_type_name) {
                         ?>
-                            <span class="badge bg-secondary"><?php echo $experience_type_name; ?></span>
+                            <span class="badge <?php echo "badge-" . str_replace("/", "-", $experience_type_name); ?>
+                            
+                            "><?php echo $experience_type_name; ?></span>
                     <?php
 
                         }

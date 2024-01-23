@@ -12,6 +12,17 @@ function ecoregions_register_navigation_menus() {
     );
 }
 
+$region_colors = [];
+$region_colors['northwest-uplands'] = 'bg-region-blue';
+$region_colors['central-lowlands'] = 'bg-region-green';
+$region_colors['northeast-uplands'] = 'bg-region-yellow';
+$region_colors['western-hills'] = 'bg-region-red';
+$region_colors['long-island-sound-coastal-lowlands'] = 'bg-region-purple';
+$region_colors['eastern-hills'] = 'bg-region-pink';
+
+
+
+
 function ecoregions_enqueue_global_scripts() {
     wp_enqueue_style( 'ecoregions_style', get_stylesheet_uri(), array(), ECOREGIONS_THEME_VER );
 }

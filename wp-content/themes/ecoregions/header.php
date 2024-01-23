@@ -31,7 +31,7 @@
     <div id="site">
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid">
-                <a class="navbar-brand text-blue-dark" href="#">
+                <a class="navbar-brand text-blue-dark" href="/">
                     <img 
                     src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.jpg"
                     alt="Connecticut State Museum of Natural History" width="auto" height="30" class="d-inline-block align-text-top me-2">
@@ -55,6 +55,8 @@
                 </div>
             </div>
         </nav>
+
+
 
     
 
