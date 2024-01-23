@@ -24,6 +24,12 @@ Text Domain: ecoregions
     --blue-dark:#1f2e3a;
     --blue-darker:#0f1a0f;
     --blue-lighter: #4d6878;
+    --region-blue:#98cdf8;
+    --region-red:#fa977c;
+    --region-green:#d7e84b;
+    --region-pink:#f8cfd0;
+    --region-purple:#ccb5da;
+    --region-yellow:#f7e9a7;
 }
 
 .bg-green {
@@ -70,6 +76,34 @@ Text Domain: ecoregions
 .bg-blue-lighter {
     background-color: var(--blue-lighter);
 }
+
+
+
+.bg-region-blue {
+    background-color: var(--region-blue);
+}
+
+.bg-region-red {
+    background-color: var(--region-red);
+}
+
+.bg-region-green {
+    background-color: var(--region-green);
+}
+
+.bg-region-pink {
+    background-color: var(--region-pink);
+}
+
+.bg-region-purple {
+    background-color: var(--region-purple);
+}
+
+.bg-region-yellow {
+    background-color: var(--region-yellow);
+}
+
+
 
 .text-green {
     color: var(--green);

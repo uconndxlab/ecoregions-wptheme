@@ -80,7 +80,7 @@ get_header();
                 <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/images/townmap_blue.gif" alt="Connecticut's Ecoregions" class="img-fluid" /> -->
 
                 <div class="map d-none d-lg-block">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/CT_Map_NoKey.gif" alt="Connecticut's Ecoregions" class="img-fluid" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/CT_Map_NoKey_Colored.svg" alt="Connecticut's Ecoregions" class="img-fluid" />
                 </div>
             </div>
 
@@ -102,10 +102,51 @@ get_header();
              mt-5
              ">
 
+             <?php
+                $params = array(
+                    'limit' => -1,
+                    'orderby' => 'name ASC'
+                );
+                $regions = pods('region', $params);
+                $isEmpty = $regions->total() === 0;
+                ?>
+
                 <h2>Let's explore!</h2>
                 <p>Select a region on the map or in the dropdown menu to learn more about it.</p>
                 <p>Each region has a unique combination of geology, topography, soils, climate, and plant and animal communities. </p>
-                <!-- show the dropdown menu -->
+                <!-- show the regions nav -->
+
+                <div class="regions-nav">
+                    <?php
+
+                        $region_colors = [];
+                        $region_colors['northwest-uplands'] = 'bg-region-blue';
+                        $region_colors['central-lowlands'] = 'bg-region-green';
+                        $region_colors['northeast-uplands'] = 'bg-region-yellow';
+                        $region_colors['western-hills'] = 'bg-region-red';
+                        $region_colors['long-island-sound-coastal-lowlands'] = 'bg-region-purple';
+                        $region_colors['eastern-hills'] = 'bg-region-pink';
+                    ?>
+                    <?php while ($regions->fetch()) : ?>
+                        <a href="<?php echo $regions->display('permalink'); ?>" 
+                        data-region="<?php echo $regions->display('slug'); ?>"
+                        class="btn 
+                        btn-outline-light
+                        btn-sm 
+                        d-block 
+                        text-dark
+                        fw-bold
+                        mb-2 <?php echo $region_colors[$regions->display('slug')]; ?>">
+                        
+                        
+
+                            <?php echo $regions->display('name'); ?>
+                        </a>
+                    <?php endwhile; ?>
+                </div>
+
+
+               
 
 
             </div>
