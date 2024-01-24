@@ -57,7 +57,7 @@ if (!isHTMX()) {
                 <!-- Description column -->
                 <div class="col-7">
                     <!-- link back to the region -->
-                    <div class="experience-description mt-2 p-4 bg-white text-dark">
+                    <div class="experience-description mt-2 p-4 bg-blue-light text-white">
                         <?php if ($description) : ?>
                             <h4>Description</h4>
                             <?php echo $description; ?>
