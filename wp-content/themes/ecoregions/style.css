@@ -294,6 +294,11 @@ h4 {
     overflow-y:scroll;
 }
 
+.region-northwest-uplands .stuff-to-do-header {
+    color:#fff;
+    border-bottom: 4px solid var(--region-blue);
+}
+
 
 .list-group-item {
     border-bottom-right-radius: 0px!important;
@@ -334,7 +339,7 @@ h4 {
     transition: all 0.3s ease-in-out;
 }
 
-#region-meat:has(.single-experience-wrap) #regionTabContent, #region-meat:has(.single-experience-wrap) #regionTabs {
+#region-meat:has(.single-experience-wrap) .experience-search-wrap, #region-meat:has(.single-experience-wrap) .region-overview {
     display: none!important;
 }
 
@@ -393,7 +398,7 @@ h4 {
     border-color: var(--region-blue);
 }
 
-.region-northwest-uplands h2 .badge {
+.region-northwest-uplands h2 .badge, .region-northwest-uplands h4 .badge {
     background-color: var(--region-blue);
     /** make it square **/
     width: 1.5em;

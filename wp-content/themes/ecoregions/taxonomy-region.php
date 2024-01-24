@@ -47,24 +47,24 @@ get_header(); // Include your header template
 
     <!-- Hero Section -->
     <section class="hero" style="background-image: url(
-    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat;">
+    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat;
+    max-height: 500px;
+    ">
         <div class="container">
             <div class="row py-4 align-items-center
         
         ">
                 <div class="col-md-6 p-5 bg-dark">
-                <h2 class="text-white fw-500">
+                    <h2 class="text-white fw-500">
                         <!-- blank badge -->
                         <span class="badge text-white"> </span>
                         <?php echo $region_name; ?>
                     </h2>
-                    <h5
-                    class="text-white fw-500"
-                    ><?php echo $region_flavor_text; ?></h5>
+                    <h5 class="text-white fw-500"><?php echo $region_flavor_text; ?></h5>
 
                 </div>
-                <div class="col-md-6">
-                    <img style="position:sticky; top:25px;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.svg" alt="<?php echo $region_name; ?>">
+                <div class="col-md-6 text-center">
+                    <img style="position:sticky; top:25px; object-fit:contain; max-height:450px;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.png" alt="<?php echo $region_name; ?>">
 
                 </div>
 
@@ -77,135 +77,83 @@ get_header(); // Include your header template
     </section>
 
     <div class="bg-dark">
-        <div class="container text-white  ">
+        <div class="container text-white">
 
             <div class="row bg-dark pt-5">
-                <div id="region-meat" class="col-md-12">
-
-
-
-                    <!-- Nav tabs -->
-
-                    <?php if (!empty($region_overview)) : ?>
-
-                        <ul class="nav nav-tabs d-flex" id="regionTabs" role="tablist">
-                            <li class="nav-item
-                    <?php if (empty($experience_type) and empty($habitat)) : ?>
-                        active
-                    <?php endif; ?>
-                    
-                    " role="presentation">
-                                <a class="nav-link
-                        <?php if (empty($experience_type) and empty($habitat)) : ?>
-                            active
+                <div id="region-meat" class="row">
+                    <div class="col-md-12 region-overview">
+                        <h4 class="text-white">About <?php echo $region_name; ?></h4>
+                        <div>
+                            <?php echo $region_overview; ?>
+                        </div>
+                        <?php if (empty($region_overview)) : ?>
+                            <div class="alert alert-warning" role="alert">
+                                <h3>No Region Information Found</h3>
+                                <p>It looks like we haven't finished populating the content for this ecoregion. Check back soon!</p>
+                            </div>
                         <?php endif; ?>
-                        " id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-                            </li>
-                            <li class="nav-item 
-                    <?php if (($experience_type) or ($habitat)) : ?>
-                        active
-                    <?php endif; ?>
-                    " role="presentation">
-                                <a class="nav-link
-                        <?php if (($experience_type) or ($habitat)) : ?>
-                        active
-                    <?php endif; ?>
-                        " id="experiences-tab" data-bs-toggle="tab" href="#experiences" role="tab" aria-controls="experiences" aria-selected="false">Stuff To Do</a>
-                            </li>
-                        </ul>
-                    <?php endif; ?>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content" id="regionTabContent">
-                        <div class="tab-pane fade
-                <?php if (empty($experience_type) and empty($habitat)) : ?>
-                        active show
-                    <?php endif; ?>
-                
-                " id="overview" role="tabpanel" aria-labelledby="overview-tab">
-
-                            <div>
-
-                                <?php echo $region_overview; ?>
-
-                            </div>
-
-                            <?php if (empty($region_overview)) : ?>
-                                <div class="alert alert-warning" role="alert">
-                                    <h3>No Region Information Found</h3>
-                                    <p>It looks like we haven't finished populating the content for this ecoregion. Check back soon!</p>
-                                </div>
-                            <?php endif; ?>
-
-
-                        </div>
-                        <div class="tab-pane fade
-                <?php if (($experience_type) or ($habitat)) : ?>
-                        active show
-                    <?php endif; ?>
-                " id="experiences" role="tabpanel" aria-labelledby="experiences-tab">
-                            <!-- add filter dropdowns for "activity_type" and "habitat" -->
-                            <form method="get" action="/region/<?php echo $region_slug; ?>/" id="filter_experiences">
-                                <div class="d-flex justify-content-between">
-
-                                    <div class="filter-experiences mb-4">
-                                        <select id="habitat-select" name="hab">
-                                            <option value="">All Habitats</option>
-                                            <?php
-                                            $habitat_params = array(
-                                                'limit' => -1,
-                                                'orderby' => 'name ASC'
-                                            );
-
-                                            $habitats = pods('habitat', $habitat_params);
-
-                                            while ($habitats->fetch()) :
-                                            ?>
-                                                <option <?php if ($_GET['hab'] == $habitats->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="filter-experiences mb-4">
-                                        <select id="activity-select" name="ex_type">
-                                            <option value="all">All Experience Types</option>
-                                            <?php
-                                            $experience_type_params = array(
-                                                'limit' => -1,
-                                                'orderby' => 'name ASC'
-                                            );
-
-                                            $experience_types = pods('experience_type', $experience_type_params);
-
-                                            while ($experience_types->fetch()) :
-                                            ?>
-                                                <option <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-
-
-                            <div class="experience-results">
-                                <?php
-                                // Include your experiences content here, or use your existing code to get experiences
-                                get_template_part('partials/components/c', 'experiences', array(
-                                    'region' => $region_slug,
-                                    'habitat' => $habitat,
-                                    'experience_type' => $experience_type
-                                ));
-                                ?>
-                            </div>
-
-
-                        </div>
-
                     </div>
-                    <div class="single-experience-target">
+
+                    <div class="col-md-12">
+                        <h4 class="text-white stuff-to-do-header mb-5">Stuff To Do</h4>
+                        <div class="experience-search-wrap">
+                        <!-- add filter dropdowns for "activity_type" and "habitat" -->
+                        <form method="get" action="/region/<?php echo $region_slug; ?>/" id="filter_experiences">
+                            <div class="d-flex justify-content-between mb-5">
+                                <div class="filter-experiences">
+                                    <select id="habitat-select" name="hab">
+                                        <option value="">All Habitats</option>
+                                        <?php
+                                        $habitat_params = array(
+                                            'limit' => -1,
+                                            'orderby' => 'name ASC'
+                                        );
+
+                                        $habitats = pods('habitat', $habitat_params);
+
+                                        while ($habitats->fetch()) :
+                                        ?>
+                                            <option <?php if ($_GET['hab'] == $habitats->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+
+                                <div class="filter-experiences">
+                                    <select id="activity-select" name="ex_type">
+                                        <option value="all">All Experience Types</option>
+                                        <?php
+                                        $experience_type_params = array(
+                                            'limit' => -1,
+                                            'orderby' => 'name ASC'
+                                        );
+
+                                        $experience_types = pods('experience_type', $experience_type_params);
+
+                                        while ($experience_types->fetch()) :
+                                        ?>
+                                            <option <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="experience-results">
+                            <?php
+                            // Include your experiences content here, or use your existing code to get experiences
+                            get_template_part('partials/components/c', 'experiences', array(
+                                'region' => $region_slug,
+                                'habitat' => $habitat,
+                                'experience_type' => $experience_type
+                            ));
+                            ?>
+                        </div>
+                        </div>
+                        <div class="single-experience-target"></div>
 
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -84,7 +84,9 @@ if (!empty($experiences)) {
                     style="display: <?php echo $display; ?>"
                 <?php } ?>
                 class="list-group-item my-2 bg-white text-blue-darker">
-                    <a class="list-group-item-action text-blue-darker" hx-target=".single-experience-target" hx-get="<?php echo get_permalink($experience->ID); ?>" hx-push-url="false" hx-select=".single-experience-wrap" href="<?php echo get_permalink($experience->ID); ?>">
+                    <a class="list-group-item-action text-blue-darker" 
+
+                    href="<?php echo get_permalink($experience->ID); ?>">
                         <h4><?php echo get_the_title($experience->ID); ?></h4>
                         <p> <?php echo get_the_excerpt($experience->ID); ?></p>
 
