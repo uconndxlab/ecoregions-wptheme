@@ -54,7 +54,7 @@ get_header(); // Include your header template
             <div class="row py-4 align-items-center
         
         ">
-                <div class="col-md-6 p-5 bg-dark">
+                <div class="col-md-6 p-4 bg-blue">
                     <h2 class="text-white fw-500">
                         <!-- blank badge -->
                         <span class="badge text-white"> </span>
@@ -81,7 +81,7 @@ get_header(); // Include your header template
 
             <div class="row bg-dark pt-5">
                 <div id="region-meat" class="row">
-                    <div class="col-md-12 region-overview">
+                    <div class="col-md-12 region-overview bg-blue-light text-white p-4">
                         <h4 class="text-white">About <?php echo $region_name; ?></h4>
                         <div>
                             <?php echo $region_overview; ?>
@@ -95,7 +95,7 @@ get_header(); // Include your header template
                     </div>
 
                     <div class="col-md-12">
-                        <h4 class="text-white stuff-to-do-header mb-5">Stuff To Do</h4>
+                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do</h4>
                         <div class="experience-search-wrap">
                         <!-- add filter dropdowns for "activity_type" and "habitat" -->
                         <form method="get" action="/region/<?php echo $region_slug; ?>/" id="filter_experiences">

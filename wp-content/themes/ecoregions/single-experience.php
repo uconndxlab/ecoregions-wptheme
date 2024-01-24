@@ -26,7 +26,7 @@ if (!isHTMX()) {
 
         <div class="container">
             <div class="row py-4 align-items-center">
-                <div class="col-md-6 px-4 py-3 bg-dark">
+                <div class="col-md-6 px-4 py-3 bg-blue">
                     <h4 class="text-white fw-500">
                         <!-- blank badge -->
                         <span class="badge text-white"> </span>
