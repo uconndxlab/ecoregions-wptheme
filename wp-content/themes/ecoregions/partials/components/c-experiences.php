@@ -79,9 +79,9 @@ if (!empty($experiences)) {
             <ul class="list-group">
 
 
-                <li
+                <li 
                 <?php if(isset($display)) { ?>
-                    style="display: <?php echo $display; ?>"
+                    style="display: <?php echo $display; ?> "
                 <?php } ?>
                 class="list-group-item my-2 bg-white text-blue-darker">
                     <a class="list-group-item-action text-blue-darker" 

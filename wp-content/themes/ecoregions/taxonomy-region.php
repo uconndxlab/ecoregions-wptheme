@@ -90,7 +90,7 @@ get_header(); // Include your header template
                         <?php endif; ?>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do</h4>
                         <div class="experience-results">
                             <?php
@@ -106,64 +106,68 @@ get_header(); // Include your header template
 
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Filter Options</h4>
                         <div class="experience-search-wrap">
                             <!-- add filter dropdowns for "activity_type" and "habitat" -->
                             <div class="filter-experiences">
                                 <h5 class="text-white">Filter by Habitat</h5>
-                                <ul id="habitat-menu" class="nav mb-4 nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
-                                    </li>
-                                    <?php
-                                    $habitat_params = array(
-                                        'limit' => -1,
-                                        'orderby' => 'name ASC'
-                                    );
-
-                                    $habitats = pods('habitat', $habitat_params);
-
-                                    while ($habitats->fetch()) :
-                                    ?>
+                                <nav class="nav">
+                                    <ul id="habitat-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></a>
+                                            <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
                                         </li>
-                                    <?php endwhile; ?>
-                                </ul>
+                                        <?php
+                                        $habitat_params = array(
+                                            'limit' => -1,
+                                            'orderby' => 'name ASC'
+                                        );
+
+                                        $habitats = pods('habitat', $habitat_params);
+
+                                        while ($habitats->fetch()) :
+                                        ?>
+                                            <li class="nav-item">
+                                                <a class="text-white nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></a>
+                                            </li>
+                                        <?php endwhile; ?>
+                                    </ul>
+                                </nav>
                             </div>
 
                             <div class="filter-experiences">
                                 <h5 class="text-white" id="activity-type">Filter by Experience Type</h5>
-                                <ul id="activity-menu" class="nav mb-4 nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
-                                    </li>
-                                    <?php
-                                    $experience_type_params = array(
-                                        'limit' => -1,
-                                        'orderby' => 'name ASC'
-                                    );
-
-                                    $experience_types = pods('experience_type', $experience_type_params);
-
-                                    while ($experience_types->fetch()) :
-                                    ?>
+                                <nav class="nav flex-column">
+                                    <ul id="activity-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></a>
+                                            <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
                                         </li>
-                                    <?php endwhile; ?>
-                                </ul>
+                                        <?php
+                                        $experience_type_params = array(
+                                            'limit' => -1,
+                                            'orderby' => 'name ASC'
+                                        );
+
+                                        $experience_types = pods('experience_type', $experience_type_params);
+
+                                        while ($experience_types->fetch()) :
+                                        ?>
+                                            <li class="nav-item">
+                                                <a class="text-white nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></a>
+                                            </li>
+                                        <?php endwhile; ?>
+                                    </ul>
                             </div>
-
-
                         </div>
+
+
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 </div>
 
 <script>
