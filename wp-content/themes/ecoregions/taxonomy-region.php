@@ -47,10 +47,10 @@ get_header(); // Include your header template
 
     <!-- Hero Section -->
     <section class="hero" style="background-image: url(
-    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat; max-height: 500px;">
+    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat; max-height: 300px;">
         <div class="container">
             <div class="row py-4 align-items-center">
-                <div class="col-md-6 p-4 bg-blue">
+                <div class="col-md-9 p-4 bg-blue">
                     <h2 class="text-white fw-500">
                         <!-- blank badge -->
                         <span class="badge text-white"> </span>
@@ -59,15 +59,8 @@ get_header(); // Include your header template
                     <h5 class="text-white fw-500"><?php echo $region_flavor_text; ?></h5>
 
                 </div>
-                <div class="col-md-6 text-center">
-                    <img style="position:sticky; top:25px; object-fit:contain; max-height:450px;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.png" alt="<?php echo $region_name; ?>">
-
-                </div>
 
                 <!-- learn more scroll down -->
-
-
-
             </div>
         </div>
     </section>
@@ -77,7 +70,7 @@ get_header(); // Include your header template
 
             <div class="row bg-dark pt-5">
                 <div id="region-meat" class="row">
-                    <div class="col-md-12 region-overview bg-blue-light text-white p-4">
+                    <div class="col-md-7 region-overview bg-blue-light text-white p-4">
                         <h4 class="text-white">About <?php echo $region_name; ?></h4>
                         <div>
                             <?php echo $region_overview; ?>
@@ -90,9 +83,15 @@ get_header(); // Include your header template
                         <?php endif; ?>
                     </div>
 
+                    <div class="col-md-5 text-center align-items-center display-flex">
+                        <img style="position:sticky; top:25px; object-fit:contain;" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/map_svg/<?php echo $region_slug; ?>.png" alt="<?php echo $region_name; ?>">
+
+                    </div>
+
+
                     <div class="col-md-9">
-                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do in <?php echo $region_name; ?>  
-                            
+                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do in <?php echo $region_name; ?>
+
                         </h4>
                         <div class="experience-results row row-cols-1 row-cols-md-3 g-4">
                             <?php
@@ -109,6 +108,7 @@ get_header(); // Include your header template
                     </div>
 
                     <div class="col-md-3">
+
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Filter Options</h4>
                         <div class="experience-search-wrap">
                             <!-- add filter dropdowns for "activity_type" and "habitat" -->
@@ -117,8 +117,7 @@ get_header(); // Include your header template
                                 <nav class="nav">
                                     <ul id="habitat-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="text-white nav-link <?php if (empty($_GET['hab'])) : ?>active<?php endif; ?>"
-                                            href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
+                                            <a class="text-white nav-link <?php if (empty($_GET['hab'])) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
                                         </li>
                                         <?php
                                         $habitat_params = array(
@@ -143,8 +142,7 @@ get_header(); // Include your header template
                                 <nav class="nav">
                                     <ul id="activity-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link text-white <?php if (empty($_GET['ex_type'])) : ?>active<?php endif; ?>" 
-                                            href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
+                                            <a class="nav-link text-white <?php if (empty($_GET['ex_type'])) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
                                         </li>
                                         <?php
                                         $experience_type_params = array(
