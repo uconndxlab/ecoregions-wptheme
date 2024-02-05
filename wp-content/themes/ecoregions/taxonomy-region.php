@@ -47,13 +47,9 @@ get_header(); // Include your header template
 
     <!-- Hero Section -->
     <section class="hero" style="background-image: url(
-    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat;
-    max-height: 500px;
-    ">
+    <?php echo get_template_directory_uri(); ?>/assets/images/hero-fpo.jpg); background-attachment:fixed;background-size:cover; background-repeat:no-repeat; max-height: 500px;">
         <div class="container">
-            <div class="row py-4 align-items-center
-        
-        ">
+            <div class="row py-4 align-items-center">
                 <div class="col-md-6 p-4 bg-blue">
                     <h2 class="text-white fw-500">
                         <!-- blank badge -->
@@ -94,50 +90,8 @@ get_header(); // Include your header template
                         <?php endif; ?>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do</h4>
-                        <div class="experience-search-wrap">
-                        <!-- add filter dropdowns for "activity_type" and "habitat" -->
-                        <form method="get" action="/region/<?php echo $region_slug; ?>/" id="filter_experiences">
-                            <div class="d-flex justify-content-between mb-5">
-                                <div class="filter-experiences">
-                                    <select id="habitat-select" name="hab">
-                                        <option value="">All Habitats</option>
-                                        <?php
-                                        $habitat_params = array(
-                                            'limit' => -1,
-                                            'orderby' => 'name ASC'
-                                        );
-
-                                        $habitats = pods('habitat', $habitat_params);
-
-                                        while ($habitats->fetch()) :
-                                        ?>
-                                            <option <?php if ($_GET['hab'] == $habitats->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                </div>
-
-                                <div class="filter-experiences">
-                                    <select id="activity-select" name="ex_type">
-                                        <option value="all">All Experience Types</option>
-                                        <?php
-                                        $experience_type_params = array(
-                                            'limit' => -1,
-                                            'orderby' => 'name ASC'
-                                        );
-
-                                        $experience_types = pods('experience_type', $experience_type_params);
-
-                                        while ($experience_types->fetch()) :
-                                        ?>
-                                            <option <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?> selected <?php endif; ?> value="<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-
                         <div class="experience-results">
                             <?php
                             // Include your experiences content here, or use your existing code to get experiences
@@ -148,9 +102,62 @@ get_header(); // Include your header template
                             ));
                             ?>
                         </div>
-                        </div>
                         <div class="single-experience-target"></div>
 
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Filter Options</h4>
+                        <div class="experience-search-wrap">
+                            <!-- add filter dropdowns for "activity_type" and "habitat" -->
+                            <div class="filter-experiences">
+                                <h5 class="text-white">Filter by Habitat</h5>
+                                <ul id="habitat-menu" class="nav mb-4 nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
+                                    </li>
+                                    <?php
+                                    $habitat_params = array(
+                                        'limit' => -1,
+                                        'orderby' => 'name ASC'
+                                    );
+
+                                    $habitats = pods('habitat', $habitat_params);
+
+                                    while ($habitats->fetch()) :
+                                    ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            </div>
+
+                            <div class="filter-experiences">
+                                <h5 class="text-white" id="activity-type">Filter by Experience Type</h5>
+                                <ul id="activity-menu" class="nav mb-4 nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
+                                    </li>
+                                    <?php
+                                    $experience_type_params = array(
+                                        'limit' => -1,
+                                        'orderby' => 'name ASC'
+                                    );
+
+                                    $experience_types = pods('experience_type', $experience_type_params);
+
+                                    while ($experience_types->fetch()) :
+                                    ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></a>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
 
