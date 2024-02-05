@@ -69,62 +69,46 @@ if (!empty($experiences)) {
         $experience_type_slugs = array();
         if (isset($experience_types)) {
             foreach ($experience_types as $experience_type) {
-
                 $experience_type_names[] = strtolower($experience_type->name);
                 $experience_type_slugs[] = strtolower($experience_type->slug);
             }
         }
-?>
-        <div>
-            <ul class="list-group">
+        ?>
+        <div class="col">
+        <div class="card equal-height-card my-2">
+            <img src="<?php echo get_the_post_thumbnail_url($experience->ID, 'thumbnail'); ?>" class="card-img-top" alt="Featured Image">
+            <div class="card-body">
+                <a href="<?php echo get_permalink($experience->ID); ?>" class="text-decoration-none">
+                    <h4 class="card-title"><?php echo get_the_title($experience->ID); ?></h4>
+                    <p class="card-text"><?php echo get_the_excerpt($experience->ID); ?></p>
+                </a>
 
-
-                <li 
-                <?php if(isset($display)) { ?>
-                    style="display: <?php echo $display; ?> "
-                <?php } ?>
-                class="list-group-item my-2 bg-white text-blue-darker">
-                    <a class="list-group-item-action text-blue-darker" 
-
-                    href="<?php echo get_permalink($experience->ID); ?>">
-                        <h4><?php echo get_the_title($experience->ID); ?></h4>
-                        <p> <?php echo get_the_excerpt($experience->ID); ?></p>
-
-
-
-                    </a>
-                    <?php // do the badges for habitats and experience types
-                    if (!empty($habitat_names)) {
-                        foreach ($habitat_names as $habitat_name) {
-                    ?>
-
-                            <span class="badge <?php echo "badge-" . str_replace(" ", "-", $habitat_name); ?>"><?php echo $habitat_name; ?></span>
-                        <?php
-                        }
-                    }
-
-                    if (!empty($experience_type_names)) {
-                        foreach ($experience_type_names as $experience_type_name) {
-                        ?>
-                            <span class="badge <?php echo "badge-" . str_replace("/", "-", $experience_type_name); ?>
-                            
-                            "><?php echo $experience_type_name; ?></span>
+                <?php // do the badges for habitats and experience types
+                if (!empty($habitat_names)) {
+                    foreach ($habitat_names as $habitat_name) {
+                ?>
+                        <span class="badge <?php echo "badge-" . str_replace(" ", "-", $habitat_name); ?>"><?php echo $habitat_name; ?></span>
                     <?php
-
-                        }
                     }
+                }
+
+                if (!empty($experience_type_names)) {
+                    foreach ($experience_type_names as $experience_type_name) {
                     ?>
-                </li>
+                        <span class="badge <?php echo "badge-" . str_replace("/", "-", $experience_type_name); ?>"><?php echo $experience_type_name; ?></span>
+                <?php
 
-            </ul>
+                    }
+                }
+                ?>
+            </div>
         </div>
-
-    <?php
+    </div>
+<?php
     }
 } else {  ?>
-
     <div class="alert alert-warning">
         There are no experiences available matching your query.
     </div>
+<?php } ?>
 
-<?php }

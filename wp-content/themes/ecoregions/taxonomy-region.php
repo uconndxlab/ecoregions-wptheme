@@ -90,9 +90,11 @@ get_header(); // Include your header template
                         <?php endif; ?>
                     </div>
 
-                    <div class="col-md-8">
-                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do</h4>
-                        <div class="experience-results">
+                    <div class="col-md-9">
+                        <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do in <?php echo $region_name; ?>  
+                            
+                        </h4>
+                        <div class="experience-results row row-cols-1 row-cols-md-3 g-4">
                             <?php
                             // Include your experiences content here, or use your existing code to get experiences
                             get_template_part('partials/components/c', 'experiences', array(
@@ -106,7 +108,7 @@ get_header(); // Include your header template
 
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Filter Options</h4>
                         <div class="experience-search-wrap">
                             <!-- add filter dropdowns for "activity_type" and "habitat" -->
@@ -115,7 +117,8 @@ get_header(); // Include your header template
                                 <nav class="nav">
                                     <ul id="habitat-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
+                                            <a class="text-white nav-link <?php if (empty($_GET['hab'])) : ?>active<?php endif; ?>"
+                                            href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
                                         </li>
                                         <?php
                                         $habitat_params = array(
@@ -137,10 +140,11 @@ get_header(); // Include your header template
 
                             <div class="filter-experiences">
                                 <h5 class="text-white" id="activity-type">Filter by Experience Type</h5>
-                                <nav class="nav flex-column">
+                                <nav class="nav">
                                     <ul id="activity-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
+                                            <a class="nav-link text-white <?php if (empty($_GET['ex_type'])) : ?>active<?php endif; ?>" 
+                                            href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
                                         </li>
                                         <?php
                                         $experience_type_params = array(
