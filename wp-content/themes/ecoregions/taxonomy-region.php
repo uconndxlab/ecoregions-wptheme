@@ -70,11 +70,48 @@ get_header(); // Include your header template
 
             <div class="row bg-dark pt-5">
                 <div id="region-meat" class="row">
-                    <div class="col-md-7 region-overview bg-blue-light text-white p-4">
+                    <div class="col-md-7 region-overview text-white p-4">
                         <h4 class="text-white">About <?php echo $region_name; ?></h4>
                         <div>
-                            <?php echo $region_overview; ?>
+                            <?php
+                            $paragraphs = explode("\n", $region_overview);
+                            $first_paragraph = $paragraphs[0];
+                            $remaining_paragraphs = array_slice($paragraphs, 1);
+
+                            echo "<p>$first_paragraph</p>";
+
+                            if (!empty($remaining_paragraphs)) {
+                                echo '<div id="read-more" style="display: none;">';
+                                foreach ($remaining_paragraphs as $paragraph) {
+                                    echo "<p>$paragraph</p>";
+                                }
+                                echo '</div>';
+                                echo '<button id="read_more" class="btn btn-white-outline text-white" onclick="toggleReadMore()">
+                                <i class="bi bi-arrow-down-circle"></i>
+                                <span>Read More<span></button>';
+                            }
+                            ?>
                         </div>
+
+                        <script>
+                            function toggleReadMore() {
+                                var readMoreDiv = document.getElementById("read-more");
+                                var readMoreIcon = document.querySelector("#read_more i");
+                                var readMoreButton = document.querySelector("#read_more span");
+
+                                if (readMoreDiv.style.display === "none") {
+                                    readMoreDiv.style.display = "block";
+                                    readMoreIcon.classList.remove("bi-arrow-down-circle");
+                                    readMoreIcon.classList.add("bi-arrow-up-circle");
+                                    readMoreButton.innerHTML = "Read Less";
+                                } else {
+                                    readMoreDiv.style.display = "none";
+                                    readMoreIcon.classList.remove("bi-arrow-up-circle");
+                                    readMoreIcon.classList.add("bi-arrow-down-circle");
+                                    readMoreButton.innerHTML = "Read More";
+                                }
+                            }
+                        </script>
                         <?php if (empty($region_overview)) : ?>
                             <div class="alert alert-warning" role="alert">
                                 <h3>No Region Information Found</h3>
@@ -127,10 +164,17 @@ get_header(); // Include your header template
 
                                         $habitats = pods('habitat', $habitat_params);
 
+                                        $ex_type_text = '';
+                                        if (isset($_GET['ex_type'])) {
+                                            $ex_type_text = '&ex_type=' . $_GET['ex_type'];
+                                        }
+
                                         while ($habitats->fetch()) :
                                         ?>
                                             <li class="nav-item">
-                                                <a class="text-white nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); ?>"><?php echo $habitats->display('name'); ?></a>
+                                                <a class="text-white nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" 
+                                                    href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); echo $ex_type_text;?>">
+                                                    <?php echo $habitats->display('name'); ?></a>
                                             </li>
                                         <?php endwhile; ?>
                                     </ul>
@@ -151,11 +195,20 @@ get_header(); // Include your header template
                                         );
 
                                         $experience_types = pods('experience_type', $experience_type_params);
+                                        $habtext = '';
+                                        if (isset($_GET['hab'])) {
+                                            $habtext = '&hab=' . $_GET['hab'];
+                                        }
 
                                         while ($experience_types->fetch()) :
                                         ?>
                                             <li class="nav-item">
-                                                <a class="text-white nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); ?>"><?php echo $experience_types->display('name'); ?></a>
+                                                <a class="text-white nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" 
+                                                    href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); echo $habtext;?>">
+                                                    
+                                                    
+                                                    
+                                                    <?php echo $experience_types->display('name'); ?></a>
                                             </li>
                                         <?php endwhile; ?>
                                     </ul>
