@@ -433,3 +433,11 @@ h4 {
     margin-bottom:20px;
     margin-top:20px;
 }
+
+/** nav-pills active **/
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+}

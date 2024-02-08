@@ -80,7 +80,6 @@ if (!empty($experiences)) {
             <div class="card-body">
                 <a href="<?php echo get_permalink($experience->ID); ?>" class="text-decoration-none">
                     <h4 class="card-title"><?php echo get_the_title($experience->ID); ?></h4>
-                    <p class="card-text"><?php echo get_the_excerpt($experience->ID); ?></p>
                 </a>
 
                 <?php // do the badges for habitats and experience types

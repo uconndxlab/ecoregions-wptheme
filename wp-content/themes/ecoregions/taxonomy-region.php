@@ -11,8 +11,8 @@ $region = get_queried_object();
 // get the pods field 'overview'
 $region_pod = pods('region', $region->term_id);
 $region_name = $region->name;
-$region_overview = $region_pod->display('overview');
 // since we're using the wysiwyg editor, we need to use the display function to get the content
+$region_overview = $region_pod->display('overview');
 
 
 $region_flavor_text = $region_pod->field('flavor_text');
@@ -126,11 +126,15 @@ get_header(); // Include your header template
                     </div>
 
 
+                </div>
+
+                <div class="row bg-dark experience-results">
+
                     <div class="col-md-9">
                         <h4 class="text-white stuff-to-do-header mb-5 mt-4">Stuff To Do in <?php echo $region_name; ?>
 
                         </h4>
-                        <div class="experience-results row row-cols-1 row-cols-md-3 g-4">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
                             <?php
                             // Include your experiences content here, or use your existing code to get experiences
                             get_template_part('partials/components/c', 'experiences', array(
@@ -154,7 +158,14 @@ get_header(); // Include your header template
                                 <nav class="nav">
                                     <ul id="habitat-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="text-white nav-link <?php if (empty($_GET['hab'])) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/">All Habitats</a>
+                                            <a class="text-white nav-link <?php if (empty($_GET['hab'])) : ?>active<?php endif; ?>" 
+                                                href="/region/<?php echo $region_slug; if (isset($_GET['ex_type'])) {
+                                                    echo '?ex_type=' . $_GET['ex_type'];
+                                                } ?>" hx-get="/region/<?php echo $region_slug; if (isset($_GET['ex_type'])) {
+                                                    echo '?ex_type=' . $_GET['ex_type'];
+                                                } ?>" hx-select=".experience-results" hx-target=".experience-results" hx-swap="outerHTML"
+                                                >
+                                                All Habitats</a>
                                         </li>
                                         <?php
                                         $habitat_params = array(
@@ -172,8 +183,9 @@ get_header(); // Include your header template
                                         while ($habitats->fetch()) :
                                         ?>
                                             <li class="nav-item">
-                                                <a class="text-white nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" 
-                                                    href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug'); echo $ex_type_text;?>">
+                                                <a hx-get="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug');
+                                                                                                    echo $ex_type_text; ?>" hx-select=".experience-results" hx-target=".experience-results" hx-swap="outerHTML" class="text-white nav-link <?php if ($_GET['hab'] == $habitats->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?hab=<?php echo $habitats->field('slug');
+                                                                                                                                                                                                                                                                                                                                                                                                                echo $ex_type_text; ?>">
                                                     <?php echo $habitats->display('name'); ?></a>
                                             </li>
                                         <?php endwhile; ?>
@@ -186,7 +198,15 @@ get_header(); // Include your header template
                                 <nav class="nav">
                                     <ul id="activity-menu" class="nav mb-4 nav-pills flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link text-white <?php if (empty($_GET['ex_type'])) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/">All Experience Types</a>
+                                            <a hx-select=".experience-results" hx-target=".experience-results" hx-swap="outerHTML" class="nav-link text-white <?php if (empty($_GET['ex_type'])) : ?>active<?php endif; ?>" 
+                                                href="/region/<?php echo $region_slug; ?>/
+                                                <?php if (isset($_GET['hab'])) {
+                                                    echo '?hab=' . $_GET['hab'];
+                                                } ?>" 
+                                                hx-get="/region/<?php echo $region_slug; if (isset($_GET['hab'])) {
+                                                    echo '?hab=' . $_GET['hab'];
+                                                } ?>" hx-select=".experience-results" hx-target=".experience-results" hx-swap="outerHTML">
+                                                All Experience Types</a>
                                         </li>
                                         <?php
                                         $experience_type_params = array(
@@ -203,11 +223,12 @@ get_header(); // Include your header template
                                         while ($experience_types->fetch()) :
                                         ?>
                                             <li class="nav-item">
-                                                <a class="text-white nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" 
-                                                    href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug'); echo $habtext;?>">
-                                                    
-                                                    
-                                                    
+                                                <a class="text-white nav-link <?php if ($_GET['ex_type'] == $experience_types->field('slug')) : ?>active<?php endif; ?>" href="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug');
+                                                                                                                                                                                                                            echo $habtext; ?>" hx-get="/region/<?php echo $region_slug; ?>/?ex_type=<?php echo $experience_types->field('slug');
+                                                                                                                                                                                                                                                                                                                                                echo $habtext; ?>" hx-select=".experience-results" hx-target=".experience-results" hx-swap="outerHTML">
+
+
+
                                                     <?php echo $experience_types->display('name'); ?></a>
                                             </li>
                                         <?php endwhile; ?>
@@ -219,9 +240,10 @@ get_header(); // Include your header template
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 </div>
 
